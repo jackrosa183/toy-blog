@@ -1,0 +1,9 @@
+<main class="container">
+  <h4> A Hashrocket Project </h4>
+
+  <% if user_signed_in? %>
+    <%= link_to "All Posts", posts_path, class: "btn btn--dark" %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+  <% end %>
+</main>

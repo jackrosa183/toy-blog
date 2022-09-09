@@ -3,7 +3,9 @@
 one:
   title: The first title
   content: the first content
+  user: john
 
 two:
   title: The second title
   content: the second content
+  user: jane
