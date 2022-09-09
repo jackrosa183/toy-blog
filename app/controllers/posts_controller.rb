@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   #before_action :logged_in_user, only: [:create, :edit, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
+  before_action :correct_user, only: [:index]
 
   def index
     @posts= Post.all
@@ -35,7 +36,10 @@ class PostsController < ApplicationController
 
   private
   
-  
+  def correct_user
+    @posts = current_user.posts
+  end
+
   def set_post
     @post = Post.find(params[:id])
   end
