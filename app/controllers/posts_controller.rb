@@ -1,9 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :new, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:set_post, :index, :show, :new, :create, :update, :destroy]
   before_action :correct_user, only: [:index]
   before_action :is_admin?, only: [:index, :show, :destroy]
-
   def index
   end
 
@@ -32,6 +31,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+
+    redirect_to posts_path, notice: "Post was successfully destroyed"
   end
 
   private
@@ -45,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = current_user.sosts.find(params[:id])
+    @post = current_user.posts.find(params[:id])          
   end
 
   def post_params

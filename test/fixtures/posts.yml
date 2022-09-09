@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: The first title
+  title: Johns post
   content: the first content
   user: john
 
 two:
-  title: The second title
+  title: janes post
   content: the second content
   user: jane

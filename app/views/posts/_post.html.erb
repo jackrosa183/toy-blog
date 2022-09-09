@@ -3,8 +3,9 @@
     <div class="Title Link">
       <%= link_to post.title, post_path(post) %>
     </div>
-      <div class="post__content">
-        <%= tag.p post.content %>
-      </div>
+    <div class="post__content">
+      <%= tag.p post.content %>
+    </div>  
+    <%= button_to "Delete", post, method: :delete %>
   </div>
 </main>
