@@ -1,0 +1,9 @@
+<main class="container">
+  <div class="header">
+    <h1>Post</h1>
+    <%= link_to "Create Post",
+                new_post_path,
+                class: "btn btn--primary" %>
+  </div>
+  <%= render @posts.ordered %>
+</main>
