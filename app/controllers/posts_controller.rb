@@ -46,7 +46,11 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = current_user.posts.find(params[:id])          
+    if is_admin?
+      @post = Post.find(params[:id])
+    else
+      @post = current_user.posts.find(params[:id])          
+    end
   end
 
   def post_params
