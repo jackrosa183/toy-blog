@@ -1,13 +1,12 @@
 <main class="container">
   <div class="header">
-    <h1>Post</h1>
     <%= link_to "Create Post",
                 new_post_path,
-                class: "btn btn--primary" %>
+                class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
   </div>
   <%= render @posts.ordered %>
   <% if current_user.admin == true %>
-    <h2>Welcome admin</h2>
+    <p>Welcome admin</p>
   <% else %>
   <% end %>
 </main>

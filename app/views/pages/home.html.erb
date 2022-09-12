@@ -4,8 +4,8 @@
   </h1>
 
   <% if user_signed_in? %>
-    <%= link_to "All Posts", posts_path, class: "btn btn--dark" %>
+    <%= link_to "All Posts", posts_path, class: "btn-primary" %>
   <% else %>
-    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn-primary" %>
   <% end %>
 </main>
