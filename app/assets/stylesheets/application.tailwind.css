@@ -10,5 +10,38 @@
 }
 .navbar {
   display: flex;
+  padding: 10px;
 }
-
+.navbar_actions {
+  display: flex;
+  padding: 10px;
+}
+.navbar_logout {
+  padding: 10px;
+}
+.navbar_users{
+  padding: 10px;
+}
+.new_user_button{
+  padding: 15px;
+}
+.post_actions{
+  display: flex;
+  padding: 5px;
+  align-items: center
+  ;
+}
+.create_button{
+  padding: 10px;
+}
+.button_to{
+  padding: 10px;
+}
+.admin_message{
+  margin-left: 5px;
+  padding: 10px;
+}
+.post{
+  margin-left: 5px;
+  padding: 10px;
+}

@@ -1,10 +1,23 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController
   def index
-  end
-  def show
+    @users = User.all
   end
   def new
+    @user = User.new
   end
-  def create
+  def create 
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path, notice: "User was successfully created"
+    else
+    end
   end
+  private
+  def set_user
+    @user = User.find(params[:id])
+  end
+  def user_params
+    params.require(:user).permit(:email, :password, :admin)
+  end
+
 end
