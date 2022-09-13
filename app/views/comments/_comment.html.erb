@@ -1,14 +1,21 @@
 <main class="container border-2">
-  <%= tag.p comment.content %>
+  <p class= "comment_content ml-2">
+   <%= comment.content %> 
+  </p>
+  
+  <p class="comment__author italic ml-2 ">
+    <%= comment.user.class %>
+  </p>
+
   <% if comment.user == current_user %>
-    <div class="flex items-center">
+    <div class="flex items-center ml-2">
       <%= link_to "edit",
         edit_post_comment_path(comment, comment.post_id), 
-        class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"%>
+        class: "bg-blue-500 hover:bg-blue-700 text-white text-sm font-normal py-1 px-2 rounded-full"%>
       <%= button_to "Delete", 
           post_comment_path(comment.post.id, comment.id), 
           method: :delete, 
-          class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
+          class: "bg-red-500 hover:bg-red-700 text-white text-sm font-normal py-1 px-2 rounded-full" %>
     </div>
   <% else %>
   <% end %>

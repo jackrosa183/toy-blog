@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  before_action :correct_user, only: [:create, :destroy]
+  
+  def new
+    @comment = Comment.new
+  end
   def create
     @user = current_user
     @post = Post.find(params[:post_id])
@@ -22,12 +27,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
 
     @comment.destroy
     redirect_to posts_path, notice: "Comment was successfully destroyed"
+
   end
 
   private

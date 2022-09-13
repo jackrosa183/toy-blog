@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:set_post, :index, :show, :new, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :new, :create, :update, :destroy, :edit]
   before_action :is_admin?, only: [:destroy]
 
   def index
@@ -44,10 +44,14 @@ class PostsController < ApplicationController
   private
   
   def set_post
-    if is_admin?
-      @post = Post.find(params[:id])
+    unless user_signed_in?
+      redirect_to new_user_session_path, notice: "Please login before continuing"
     else
-      @post = current_user.posts.find(params[:id])          
+      if is_admin?
+        @post = Post.find(params[:id])
+      else
+        @post = current_user.posts.find(params[:id])          
+      end
     end
   end
 

@@ -9,10 +9,13 @@ class ApplicationController < ActionController::Base
     end
   end
   def is_admin?
+    if user_signed_in?
       if current_user.admin
         return true
       else
         return false
       end
+    else
+    end
   end
 end
