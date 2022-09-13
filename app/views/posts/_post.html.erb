@@ -1,6 +1,6 @@
 <main class="container">
   <div class="border-2 border-blue-500 border-opacity-75 md:border-opacity-50">
-    <div class= "post">
+    <div class= "post p-5 ml-5">
       <div class="post__title">
       <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
         <%= post.title %>
@@ -9,7 +9,7 @@
       <div class="post__content">
         <%= tag.p post.content %>
       </div>  
-      <div class="post_actions">
+      <div class="post_actions flex items-center">
           <%= link_to "Edit", edit_post_path(post), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"%>
           <%= button_to "Delete", post_path(post), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
         </div>

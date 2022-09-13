@@ -22,15 +22,15 @@
 .navbar_users{
   padding: 10px;
 }
-.new_user_button{
+/* .new_user_button{
   padding: 15px;
-}
-.post_actions{
+} */
+/* .post_actions{
   display: flex;
   padding: 5px;
   align-items: center
   ;
-}
+} */
 .create_button{
   padding: 10px;
 }
@@ -41,10 +41,10 @@
   margin-left: 5px;
   padding: 10px;
 }
-.post{
+/* .post{
   margin-left: 5px;
   padding: 10px;
-}
+} */
 .pagination{
   @apply flex justify-center;
   @apply my-2 py-2;
