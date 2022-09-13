@@ -10,10 +10,23 @@
         <%= tag.p post.content %>
       </div>  
       <div class="post_actions flex items-center">
-          <%= link_to "Edit", edit_post_path(post), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"%>
-          <%= button_to "Delete", post_path(post), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
+          <div class="p-2">
+            <%= link_to "Edit", edit_post_path(post), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"%>
+          </div>
+          <div class="p-2">
+            <%= button_to "Delete", post_path(post), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
+          </div>
         </div>
       </div>
+       <%= form_with(model: post.comments.build, url: post_comments_path(post)) do |f| %>
+        <div class="field">
+            <%= f.text_area :content, placeholder: "Comment..." %>
+        </div>
+        <span id="comment_button">
+            <%= f.submit "Comment", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
+        </span>
+    <% end %>
+      <%= render post.comments%>
     </div>
   </div>
 </main>

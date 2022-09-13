@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyString
-  post_id: 1
-  user_id: 1
+first_comment:
+  content: first comment
+  user: john
+  post: one
 
-two:
+second_comment:
   content: MyString
-  post_id: 1
-  user_id: 1
+  post: three
+  user: john
+
+janes_comment:
+  content: This is jane
+  post: two
+  user: jane

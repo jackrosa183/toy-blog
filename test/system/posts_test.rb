@@ -6,23 +6,14 @@ class PostsTest < ApplicationSystemTestCase
     @post = Post.last
   end
 
-  test "user only sees their own posts" do
+  test "user sees all posts" do
     login_as users(:john)
 
     visit posts_path
 
-    assert_no_text "janes post"
+    assert_text "janes post"
     assert_text "johns post"
     assert_text "johns second post"
-  end
-
-  test "admin can see all posts" do
-    login_as users(:admin)
-
-    visit posts_path
-
-    assert_text "johns post"
-    assert_text "janes post"
   end
 
   test "creating a new post" do

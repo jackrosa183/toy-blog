@@ -6,4 +6,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :is_admin?, only: [:destroy]
 
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 2)
+    @posts = Post.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :user)
   end
 
 end
