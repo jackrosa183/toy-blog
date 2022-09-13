@@ -5,7 +5,7 @@ class UsersTest < ApplicationSystemTestCase
     login_as users(:admin)
   end
 
-  test "only admin can see users" do
+  test "only admin can see users button" do
     login_as users(:john)
     visit posts_path
     assert_no_text "Users"
@@ -14,4 +14,23 @@ class UsersTest < ApplicationSystemTestCase
     visit posts_path
     assert_text "Users"
   end
+
+  test "only admin can create users" do
+    visit users_path
+    click_on "Create New User"
+
+    fill_in "Email", with: "newuser@example.com"
+    fill_in "Password", with: "password"
+    click_on "Create User"
+
+    assert_selector "p", text: "newuser@example.com"
+  end
+
+  test "regular user cannot access users" do 
+    login_as users(:john)
+    visit users_path
+
+    assert_current_path root_path
+  end
+
 end

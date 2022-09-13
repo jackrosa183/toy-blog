@@ -6,6 +6,25 @@ class PostsTest < ApplicationSystemTestCase
     @post = Post.last
   end
 
+  test "user only sees their own posts" do
+    login_as users(:john)
+
+    visit posts_path
+
+    assert_no_text "janes post"
+    assert_text "johns post"
+    assert_text "johns second post"
+  end
+
+  test "admin can see all posts" do
+    login_as users(:admin)
+
+    visit posts_path
+
+    assert_text "johns post"
+    assert_text "janes post"
+  end
+
   test "creating a new post" do
     visit posts_path
     click_on "Create Post"
@@ -14,6 +33,7 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "Content", with: "Test Content"
     click_on "Create Post"
 
+    assert_current_path posts_path
     assert_selector "h2", text: "Test Title"
     assert_selector "p", text: "Test Content"
   end
@@ -22,7 +42,9 @@ class PostsTest < ApplicationSystemTestCase
     visit posts_path
 
     assert_text @post.content
+
     click_on "Delete", match: :first
+    assert_current_path posts_path
     assert_no_text @post.content
   end
 
@@ -35,7 +57,7 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "Content", with: "yote"
 
     click_on "Update Post"
-
+    assert_current_path posts_path
     assert_selector "h2", text: "yeet"
     assert_selector "p", text: "yote"
   end

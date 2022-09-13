@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:destroy]
-  def index
+  before_action :admin_check, only: [:index, :new, :create, :destroy]
+
+  def index 
     @users = User.all
   end
 
@@ -23,10 +25,11 @@ class UsersController < ApplicationController
 
   private
 
-  def is_it_current_users?
-    current_user == @user
+  def admin_check
+    unless current_user.admin
+      redirect_to root_path, alert: "Administrator access required"
+    end
   end
-
   def set_user
     @user = User.find(params[:id])
   end
