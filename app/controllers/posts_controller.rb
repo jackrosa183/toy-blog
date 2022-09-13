@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:set_post, :index, :show, :new, :create, :update, :destroy]
-  before_action :correct_user, only: [:index]
-  before_action :is_admin?, only: [:index, :show, :destroy]
+  before_action :is_admin?, only: [:destroy]
+
   def index
+    @posts = Post.paginate(page: params[:page], per_page: 2)
   end
 
   def show
@@ -42,14 +43,6 @@ class PostsController < ApplicationController
 
   private
   
-  def correct_user
-    if is_admin?
-      @posts = Post.all
-    else
-      @posts = current_user.posts
-    end
-  end
-
   def set_post
     if is_admin?
       @post = Post.find(params[:id])

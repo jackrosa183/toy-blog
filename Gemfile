@@ -33,6 +33,9 @@ gem "jbuilder"
 gem "simple_form", "~> 5.1.0"
 gem 'simple_form-tailwind'
 
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+gem 'pry', '~> 0.13.1'
+
 gem "devise", "~> 4.8.1"
 gem "autoprefixer-rails"
 
