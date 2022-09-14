@@ -4,7 +4,7 @@ one:
   title: johns post
   content: the first content
   user: john
-  publish_date: <%= Date.today %>
+  publish_date: <%= Date.current %>
 
 two:
   title: janes post
@@ -27,8 +27,8 @@ four:
 five:
   title: futuristic post
   content: the fifth content
-  user: jane
-  publish_date: <%= DateTime.current.next_day(days = 10) %>
+  user: john
+  publish_date: <%= DateTime.new(2022, 9, 15) %>
 
 six:
   title: the last post

@@ -16,7 +16,7 @@ class PostsTest < ApplicationSystemTestCase
     assert_text "johns second post"
   end
 
-  test "user only sees published posts" do
+  test "admin only sees published posts" do
     visit posts_path
 
     assert_no_text "futuristic post"
@@ -24,6 +24,18 @@ class PostsTest < ApplicationSystemTestCase
 
   end
 
+  test "user can see their own unpublished posts" do
+    travel_to Time.new(2022, 9, 14) do
+      login_as users(:john)
+
+      visit index_drafts_path
+
+      assert_selector "h2", text: "futuristic post (Unpublished) until 2022-09-15"
+      assert_no_selector "h2", text: "janes second post (Unpublished) until 2022-09-15"
+    end
+
+  end
+ 
   test "creating a new post" do
     travel_to Time.new(2022, 9, 14) do
       visit posts_path
@@ -42,6 +54,22 @@ class PostsTest < ApplicationSystemTestCase
       assert_text "2022-09-14"
       assert_selector "h2", text: "Test Title"
       assert_selector "p", text: "Test Content"
+    end
+  end
+
+  test "posts publish on the correct day" do
+    travel_to Time.new(2022, 9, 14) do
+      login_as users(:john)
+
+      visit posts_path
+
+      assert_no_text "futuristic post"
+    end
+
+    travel_to Time.new(2022, 9, 15) do
+      login_as (users(:john))
+      visit posts_path
+      assert_text "futuristic post"
     end
   end
 
