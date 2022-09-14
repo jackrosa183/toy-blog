@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :is_admin?, only: [:destroy]
 
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 5)
+    @posts = Post.published.paginate(page: params[:page], per_page: 5)
   end
 
   def index_drafts
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
       flash[:alert] = "Post must have title and content"
       render :new
     end
-    
+
   end 
 
   def edit
