@@ -8,17 +8,6 @@
     @apply py-2 px-4 bg-blue-200;
   }
 }
-.navbar {
-  display: flex;
-  padding: 10px;
-}
-.navbar_actions {
-  display: flex;
-  padding: 10px;
-}
-.navbar_logout {
-  padding: 10px;
-}
 .navbar_users{
   padding: 10px;
 }

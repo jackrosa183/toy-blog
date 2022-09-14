@@ -1,20 +1,20 @@
-<div class="navbar">
-  <div class="app_title">
+<div class="navbar flex p-2 ml-2">
     <h1 class="font-bold text-4xl text-blue-500"> Jack's Blog </h1>
-  </div>
   <div class= "navbar_actions">
     <% if user_signed_in? %>
+
       <div class="navbar_logout">
-        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
+        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-1 px-2 rounded-full" %>
       </div>
+
       <%if is_admin? %>
         <div class="navbar_users">
           <%= button_to "Users", users_path, method: :get, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
-        </div
-        >
+        </div>
+        
       <% else %>
       <% end %>
-      <% else %>
+    <% else %>
     <% end %>
   </div>
 </div>

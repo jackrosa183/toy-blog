@@ -1,4 +1,4 @@
-<%= simple_form_for @post do |f| %>
+<%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
