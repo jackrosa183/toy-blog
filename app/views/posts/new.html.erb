@@ -1,12 +1,11 @@
 <main class= "container">
-  <div class="return_button">
-    <%= link_to ("Return"), posts_path, class: "btn-primary" %>
-  </div>
 
   <div class="header">
     <h1>Create New Post</h1>
   </div>
+
   <%= turbo_frame_tag "turbo_new_post" do %>
     <%= render "form" %>
   <% end %>
-</main>
+  
+</main> 

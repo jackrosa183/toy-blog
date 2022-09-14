@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container ml-3">
   <div class="border-2 border-blue-500 border-opacity-75 md:border-opacity-50">
     <div class= "post p-2 ml-2">
       <div class="post__title">
@@ -25,18 +25,24 @@
         <% end %>
       </div>
     </div>
-      
-    <%= link_to "Comment", new_post_comment_path(post), class: "btn-primary"%>
-    <%= form_with(model: Comment.new, url: post_comments_path(post), remote: true) do |f| %>
-      <div class="field">
-          <%= f.text_area :content, placeholder: "Comment..." %>
-      </div>
-      <span id="comment_button">
-          <%= f.submit "Comment", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
-      </span>
-    <% end %>
     
-    <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 pt-10 ml-2">
+    <div class="comment_form ml-2">
+      <%= form_with(model: Comment.new, url: post_comments_path(post), remote: true) do |f| %>
+        <div class="field">
+            <%= f.text_area :content, placeholder: "Comment..." %>
+        </div>
+        <span id="comment_button">
+            <%= f.submit "Comment", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
+        </span>
+      <% end %>
+    </div>
+    
+    <p class="post_details italic text-xs flex-right inset-y-0 ml-2 pt-10 pb-2">
+      <%= "published " + post.publish_date.to_s %>
+      <%= "by " + post.user.email.to_s%>
+    </p>
+
+    <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 ml-2">
       Comments
     </h6>
 
@@ -45,10 +51,6 @@
     <% else %>
     <% end %>
 
-    <p class="post_details italic text-xs flex">
-      <%= "published " + post.publish_date.to_s %>
-      <%= "by " + post.user.email.to_s%>
-    </p>
 
     </div>
   </div>

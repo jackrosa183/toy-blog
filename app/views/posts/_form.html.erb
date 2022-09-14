@@ -4,3 +4,6 @@
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
   <%= f.button :submit %>
 <% end %>
+<div class="return_button">
+    <%= link_to "Cancel", posts_path, class: "btn-primary" %>
+</div>
