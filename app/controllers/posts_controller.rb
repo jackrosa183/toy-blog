@@ -27,6 +27,7 @@ class PostsController < ApplicationController
       flash[:alert] = "Post must have title and content"
       render :new
     end
+    
   end 
 
   def edit

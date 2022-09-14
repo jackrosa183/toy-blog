@@ -6,5 +6,7 @@
   <div class="header">
     <h1>Create New Post</h1>
   </div>
-  <%= render "form" %>
+  <%= turbo_frame_tag "turbo_new_post" do %>
+    <%= render "form" %>
+  <% end %>
 </main>

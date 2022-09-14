@@ -3,13 +3,15 @@
     <div class="create_button">
       <%= link_to "Create Post",
                   new_post_path,
-                  class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
-
+                  class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full",
+                  data: { turbo_frame: "turbo_new_post" } %>
       <%= link_to "View drafts",
                   "/index_drafts",
                   class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" %>
     </div>
   </div>
+
+  <%= turbo_frame_tag "turbo_new_post" %>
 
   <%= will_paginate %>
   <%= render @posts.ordered.published %>
