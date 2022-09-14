@@ -3,8 +3,8 @@
    <%= comment.content %> 
   </p>
   
-  <p class="comment__author italic ml-2 ">
-    <%= comment.user.class %>
+  <p class="comment__author italic text-xs ml-2 ">
+    <%= "by " + comment.user.email.to_s %>
   </p>
 
   <% if comment.user == current_user %>

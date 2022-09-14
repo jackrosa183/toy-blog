@@ -3,7 +3,7 @@ require "application_system_test_case"
 class PostsTest < ApplicationSystemTestCase
   setup do 
     login_as users(:admin)
-    @post = Post.last
+    @post = Post.published.last
   end
 
   test "user sees all posts" do
@@ -16,17 +16,33 @@ class PostsTest < ApplicationSystemTestCase
     assert_text "johns second post"
   end
 
-  test "creating a new post" do
+  test "user only sees published posts" do
     visit posts_path
-    click_on "Create Post"
 
-    fill_in "Title", with: "Test Title"
-    fill_in "Content", with: "Test Content"
-    click_on "Create Post"
+    assert_no_text "futuristic post"
+    assert_text "old post"
 
-    assert_current_path posts_path
-    assert_selector "h2", text: "Test Title"
-    assert_selector "p", text: "Test Content"
+  end
+
+  test "creating a new post" do
+    travel_to Time.new(2022, 9, 14) do
+      visit posts_path
+      click_on "Create Post"
+
+      fill_in "Title", with: "Test Title"
+      fill_in "Content", with: "Test Content"
+
+      fill_in "post[publish_date]", with: "09142022"
+      click_on "Create Post"
+
+
+
+      assert_current_path posts_path
+
+      assert_text "2022-09-14"
+      assert_selector "h2", text: "Test Title"
+      assert_selector "p", text: "Test Content"
+    end
   end
 
   test "deleting a post" do

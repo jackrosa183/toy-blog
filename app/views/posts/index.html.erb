@@ -7,7 +7,8 @@
     </div>
   </div>
   <%= will_paginate %>
-  <%= render(@posts) %>
+  <%= render current_user.posts.ordered%>
+  <%= render @posts.ordered.published %>
 
   <div class="admin_message">
     <% if current_user.admin == true %>
@@ -15,4 +16,4 @@
     <% else %>
     <% end %>
   </div>
-</main>
+</main> 

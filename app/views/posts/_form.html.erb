@@ -1,5 +1,6 @@
 <%= simple_form_for @post do |f| %>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
+  <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
   <%= f.button :submit %>
 <% end %>

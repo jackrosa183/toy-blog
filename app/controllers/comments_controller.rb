@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :correct_user, only: [:create, :destroy]
+  # before_action :correct_user, only: [:create, :destroy]
   
   def new
     @comment = Comment.new
@@ -18,8 +18,8 @@ class CommentsController < ApplicationController
     else 
       redirect_to posts_path, alert: "Please enter content"
     end
-
   end
+
 
   def edit
   end

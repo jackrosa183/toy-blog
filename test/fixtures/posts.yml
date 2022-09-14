@@ -4,13 +4,35 @@ one:
   title: johns post
   content: the first content
   user: john
+  publish_date: <%= Date.today %>
 
 two:
   title: janes post
   content: the second content
   user: jane
+  publish_date: <%= 6.days.ago %>
 
 three:
   title: johns second post
-  content: the third content
+  content: old post
   user: john
+  publish_date: <%= 7.days.ago %>
+
+four:
+  title: janes second post
+  content: the fourth content
+  user: jane
+  publish_date: <%= DateTime.tomorrow %>
+
+five:
+  title: futuristic post
+  content: the fifth content
+  user: jane
+  publish_date: <%= DateTime.current.next_day(days = 10) %>
+
+six:
+  title: the last post
+  content: greatest post
+  user: john
+  publish_date: <%= 7.days.ago %>
+  
