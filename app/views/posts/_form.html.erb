@@ -2,6 +2,7 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
+  <%= f.input :tags, as: :select, collection: Tag.order(:title), label_method: :title, input_html: { multiple: true } %>
   <%= f.button :submit %>
 <% end %>
 <div class="return_button p-4">

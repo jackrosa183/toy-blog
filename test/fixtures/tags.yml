@@ -6,3 +6,7 @@ ruby:
 elixir:
   title: Elixir
 
+rails:
+  title: Rails
+
+

@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  resources :tags, only: [:show]
+  resources :tags, only: [:show, :create]
   resources :users
 end

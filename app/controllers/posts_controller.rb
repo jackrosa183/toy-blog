@@ -63,7 +63,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user, :publish_date)
+    params.require(:post).permit(:title, :content, :user, :publish_date, :tag, {tag_ids: [] }, :tag_ids)
   end
 
 end
