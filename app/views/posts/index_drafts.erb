@@ -1,11 +1,11 @@
-<div class="return_button p-2 mb-2">
+<div class="return_button p-2 mb-2 ml-6 pt-8">
   <%= link_to sanitize('Back'), posts_path, class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full" %>
 </div>
 <% posts = current_user.posts.where("publish_date > ?", Date.current) %>
 <% unless posts.count < 1 %>
   <%= render current_user.posts.where("publish_date > ?", Date.current) %>
 <% else%>
-  <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 pt-10 ml-2">
+  <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 pt-10 ml-6">
     You do not have any pending drafts
   </h6>
 <% end %>
