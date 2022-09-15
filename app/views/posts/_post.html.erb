@@ -19,12 +19,16 @@
         <%= "published " + post.publish_date.to_s %>
         <%= "by " + post.user.email.to_s%>
       </p>
-
-      <%= render "actions", post: post%>
+    
+      <%= render "posts/actions", post: post %>
       
     </div>
 
-    <%= render "comment_form", post: post %>
+    <% post.tags.each do |t|%>
+      <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full"%>
+    <% end %>
+
+    <%= render "posts/comment_form", post: post %>
     
 
     <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 ml-2">

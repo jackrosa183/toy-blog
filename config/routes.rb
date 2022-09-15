@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   root to: "posts#index"
   # Defines the root path route ("/")
   get '/index_drafts', to: "posts#index_drafts"
+  get '/index_tags', to: "posts#index_tags"
   resources :posts do
     resources :comments
   end
+  resources :tags, only: [:show]
   resources :users
 end
