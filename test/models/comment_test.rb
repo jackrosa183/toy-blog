@@ -3,11 +3,12 @@ require "test_helper"
 class CommentTest < ActiveSupport::TestCase
 
   setup do
-    @user = User.create(email: "eric@example.com", password: "passwword")
-    @post = Post.create(title: "Title", content: "Content", user: @user)
   end
-
+  
   test "Comment post validations" do
+    
+    @user = User.create(email: "eric@example.com", password: "passwword")
+    @post = Post.create(title: "Title", content: "Content", user: @user, publish_date: Date.current.yesterday)
     comment = Comment.create(content: "comments are cool")
     assert comment.invalid?
     assert comment.errors.where(:user_id, :blank).present?

@@ -19,7 +19,7 @@ class PostsTest < ApplicationSystemTestCase
   test "admin only sees published posts" do
     visit posts_path
 
-    assert_no_text "futuristic post"
+    assert_no_text "so advanced"
     assert_text "old post"
 
   end
@@ -74,13 +74,14 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test "deleting a post" do
+    post = posts(:one)
+    login_as users(:john)
     visit posts_path
-
-    assert_text @post.content
+    assert_text post.content
 
     click_on "Delete", match: :first
     assert_current_path posts_path
-    assert_no_text @post.content
+    assert_no_text post.content
   end
 
   test "editing a post" do

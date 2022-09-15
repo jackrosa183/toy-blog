@@ -35,4 +35,9 @@ six:
   content: greatest post
   user: john
   publish_date: <%= 7.days.ago %>
-  
+
+seven:
+  title: so advanced
+  content: so advanced
+  user: john
+  publish_date: <%= DateTime.tomorrow %>

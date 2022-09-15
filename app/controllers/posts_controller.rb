@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :is_admin?, only: [:destroy]
 
   def index
-    @posts = Post.published.paginate(page: params[:page], per_page: 5)
+    @posts = Post.published.paginate(page: params[:page], per_page: 2)
   end
 
   def index_drafts

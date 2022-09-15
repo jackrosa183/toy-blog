@@ -15,16 +15,17 @@
         <%= tag.p post.content %>
       </div>
 
+      <p class="post_details italic text-xs flex-right inset-y-0 pt-10 pb-2">
+        <%= "published " + post.publish_date.to_s %>
+        <%= "by " + post.user.email.to_s%>
+      </p>
+
       <%= render "actions", post: post%>
       
     </div>
 
     <%= render "comment_form", post: post %>
     
-    <p class="post_details italic text-xs flex-right inset-y-0 ml-2 pt-10 pb-2">
-      <%= "published " + post.publish_date.to_s %>
-      <%= "by " + post.user.email.to_s%>
-    </p>
 
     <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 ml-2">
       Comments

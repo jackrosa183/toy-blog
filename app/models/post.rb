@@ -4,9 +4,13 @@ class Post < ApplicationRecord
   validates :user, presence: true
   validates :publish_date, presence: true
   scope :ordered, -> { order(created_at: :desc) }
-  scope :published, -> { where('publish_date <= ?', Date.current)}
+  scope :published, -> { where('publish_date <= ?', Date.current).order(publish_date: :desc)}
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+
+  def self.ordered_meth
+    order(created_at: :desc)
+  end
 end
 
