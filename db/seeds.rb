@@ -7,3 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts "\n== Seeding the database with fixtures =="
 system("bin/rails db:fixtures:load")
+
+# Tag.create(title: "Elixir")
+# Tag.create(title: "Ruby")
+# Tag.create(title: "Rails")
