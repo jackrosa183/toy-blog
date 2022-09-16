@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
+  resources :searches, only: [:index]
   resources :posts do
     resources :comments
   end

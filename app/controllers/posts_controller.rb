@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :show, :new, :create, :update, :destroy, :edit]
   before_action :is_admin?, only: [:destroy]
+  
 
   def index
     @posts = Post.published.paginate(page: params[:page], per_page: 2)
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user, :publish_date, :tag, {tag_ids: [] }, :tag_ids)
+    params.require(:post).permit(:title, :content, :user, :publish_date, :tag, :tag_ids)
   end
 
 end

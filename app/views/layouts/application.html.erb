@@ -5,6 +5,20 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     </head>
     <body>
+    <header>
+    
+      <form action="<%= searches_path %>" data-turbo-frame="search_results"
+          data-controller="form" data-action="invalid->form#hideValidationMessage:capture">
+        <label for="search_query">Query</label>
+        <input id="search_query" name="query" type="search" pattern=".*\w+.*" required>
+
+        <button>
+          Search
+        </button>
+      </form>
+      <turbo-frame id="search_results"></turbo-frame>
+
+    </header>
     <%= render "layouts/navbar" %>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">

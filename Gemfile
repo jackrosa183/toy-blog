@@ -37,6 +37,7 @@ gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 gem 'pry', '~> 0.13.1'
 gem 'crono'
 gem 'twitter'
+gem 'rails-autocomplete'
 
 gem "devise", "~> 4.8.1"
 gem "autoprefixer-rails"

@@ -2,9 +2,16 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
-  <%= f.input :tags, as: :select, collection: Tag.order(:title), label_method: :title, input_html: { multiple: true } %>
+  <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %>
   <%= f.button :submit %>
 <% end %>
+
 <div class="return_button p-4">
     <%= link_to "Cancel", posts_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
 </div>
+
+<%# Text field 
+Enter tags
+Tag suggestions popup
+When you press enter or space tag, gets added
+Submit adds tags to post %>

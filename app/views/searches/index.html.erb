@@ -1,0 +1,15 @@
+<turbo-frame id="search_results">
+  <% if @tags.count == 0 %>
+    <h1>No results found for '<%= params[:query] %>'</h1>
+  <% else %>
+    <h1 class="underline" >Results</h1>
+  <% end %>
+
+  <ul>
+    <% @tags.each do |t| %>
+      <li>
+        <%= link_to highlight(t.title, params[:query]), tag_path(t) %>
+      </li>
+    <% end %>
+  </ul>
+</turbo-frame>
