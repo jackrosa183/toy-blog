@@ -6,3 +6,11 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import FormController from "./form_controller"
+application.register("form", FormController)
+
+// import ComboboxController from "./combobox_controller"
+// application.register("combobox", ComboboxController)
+
+

@@ -11,7 +11,7 @@
 
 .peer:invalid ~ .peer-invalid\:hidden               { display: none; }
 .empty\:hidden:empty                                { display: none; }
-
+.aria-selected\:outline-black[aria-selected="true"] { outline: 2px dotted black; }
 
 .navbar_users{
   padding: 10px;
