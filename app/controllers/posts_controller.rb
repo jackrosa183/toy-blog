@@ -12,7 +12,6 @@ class PostsController < ApplicationController
     @posts = Post.paginate(page: params[:page], per_page: 5)
   end
   
-
   def show
   end
 
@@ -32,15 +31,12 @@ class PostsController < ApplicationController
       @post.tags << Tag.where(title: t).first_or_create
     end
       
-
-
     if @post.save
       redirect_to posts_path, notice: "Post was successfully created"
     else
       flash[:alert] = "Post must have title and content"
       render :new
     end
-
   end 
 
   def edit
@@ -77,5 +73,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :user, :publish_date, :tag, :tag_ids, :tag_titles)
   end
-
 end
