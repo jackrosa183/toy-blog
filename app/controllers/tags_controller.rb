@@ -4,4 +4,9 @@ class TagsController < ApplicationController
     @posts = Post.tagged_with(@tag.title)
   end
   
+  def add
+    @post = Post.find(params[:post_id])
+    @tag = Tag.find(params[:id])
+  end
+  
 end

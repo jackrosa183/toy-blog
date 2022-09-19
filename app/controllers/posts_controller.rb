@@ -23,6 +23,17 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
+    tags = post_params[:tag_titles].split(" ")
+
+    puts "11111111111111111"
+    puts tags 
+
+    tags.each do |t|
+      @post.tag << Tag.where(title: t).first_or_create
+    end
+      
+
+
     if @post.save
       redirect_to posts_path, notice: "Post was successfully created"
     else
@@ -64,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user, :publish_date, :tag, :tag_ids)
+    params.require(:post).permit(:title, :content, :user, :publish_date, :tag, :tag_ids, :tag_titles)
   end
 
 end

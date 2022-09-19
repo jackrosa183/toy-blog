@@ -1,23 +1,37 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
+
+  <% tags_to_be_submitted = ["command", "computer", "mac"] %>
+  <% submitted_tags = [] %>
+  <% tags_to_be_submitted.each do |t| %>
+    <% submitted_tags.append(Tag.where(title: t).first_or_create) %>
+  <% end %>
+
+  <%= f.input :tag_titles, required: false%>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
-  <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %>
+  <%= f.input :tag_ids, as: :select, collection: submitted_tags, label_method: :title %>
   <%= f.button :submit %>
 <% end %>
 
 <div class="return_button p-4">
     <%= link_to "Cancel", posts_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
 </div>
+
+<%# Link for result tags should link to adding ids to tag_ids params %>
+<%# nested form for post is where tag search should be? %>
+
 <form action="<%= searches_path(turbo_frame: "search_results") %>" data-turbo-frame="search_results" class="peer"
   data-controller="form" data-action="invalid->form#hideValidationMessage:capture input->form#submit">
-  <label for="search_query">Search Tags</label>
+  <label for="search_query">Add Tags</label>
   <input id="search_query" name="query" type="search" pattern=".*\w+.*" required autocomplete="off"
     data-combobox-target="input" data-action="focus->combobox#start focusout->combobox#stop">
 
   <button data-form-target="submit">
     Search
   </button>
+
+  <turbo-frame id="added_tags"></turbo-frame>
   <turbo-frame id="search_results" target="_top" class="empty:hidden peer-invalid:hidden"></turbo-frame>
 </form>
 
