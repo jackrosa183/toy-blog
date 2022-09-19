@@ -13,7 +13,7 @@
     </div>
   </div>
 
-
+  <%= button_to "Connect Twitter", "/auth/twitter", method: :post, class: "btn-primary", data: { turbo: "false" }%>
   <%= will_paginate %>
   <%= render @posts.ordered.published %>
 

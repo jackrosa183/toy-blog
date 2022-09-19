@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
 
+  get '/auth/twitter/callback', to: "omniauth_callbacks#twitter"
+
   get '/add_tag/:post_id/:id', to: "tags#add"
 
   resources :searches, only: [:index]

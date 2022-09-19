@@ -36,6 +36,8 @@ gem 'simple_form-tailwind'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 gem 'pry', '~> 0.13.1'
 gem 'crono'
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'twitter'
 gem 'rails-autocomplete'
 
@@ -87,3 +89,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"

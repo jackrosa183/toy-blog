@@ -1,17 +1,10 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
-
-  <% tags_to_be_submitted = ["command", "computer", "mac"] %>
-  <% submitted_tags = [] %>
-  <% tags_to_be_submitted.each do |t| %>
-    <% submitted_tags.append(Tag.where(title: t).first_or_create) %>
-  <% end %>
-
-  <%= f.input :tag_titles, required: false%>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
+  <%= f.input :tag_titles, required: false, label: 'Tags' %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
-  <%= f.input :tag_ids, as: :select, collection: submitted_tags, label_method: :title %>
-  <%= f.button :submit %>
+  <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
+  <%= f.button :submit%>
 <% end %>
 
 <div class="return_button p-4">
