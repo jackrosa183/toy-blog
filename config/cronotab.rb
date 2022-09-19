@@ -6,14 +6,28 @@
 # class should have a method `perform` without arguments.
 #
 class CheckPublishing
+  
   def perform
     posts = Post.where(publish_date: Date.current).where(published: false)
     posts.each do |post|
+      user = User.find_by(id: post.user_id)
+
+      client = Twitter::REST::Client.new do |config|
+        config.consumer_key = Rails.application.credentials.dig(:twitter, :api_key)
+        config.consumer_secret = Rails.application.credentials.dig(:twitter, :api_secret)
+        config.access_token        =  user.twitter_account.token
+        config.access_token_secret =  user.twitter_account.secret
+      end
+      
       puts "today is publishing day " + post.title
       post.published = true
       post.save
-      #if user has a connected twitter
-        #tweet my post has been published!  
+
+      unless user.twitter_account.nil?
+        puts "TWEEEET"
+        client.update("Check out my new blogpost  #{post.title}")
+      else
+      end
     end
   end
 end

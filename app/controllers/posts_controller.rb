@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     puts tags 
 
     tags.each do |t|
-      @post.tag << Tag.where(title: t).first_or_create
+      @post.tags << Tag.where(title: t).first_or_create
     end
       
 
