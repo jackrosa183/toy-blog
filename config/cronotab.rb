@@ -8,8 +8,8 @@
 class CheckPublishing
   include Rails.application.routes.url_helpers
   def perform
-    posts = Post.where(publish_date: Date.current).where(published: false).where(should_tweet: true)
-    posts.each do |post|
+    twitter_posts = Post.where(publish_date: Date.current).where(published: false).where(should_tweet: true)
+    twitter_posts.each do |post|
       user = User.find_by(id: post.user_id)
 
       client = Twitter::REST::Client.new do |config|
@@ -29,8 +29,18 @@ class CheckPublishing
       else
       end
     end
+
+    fb_posts = Post.where(publish_date: Date.current).where(published: false).where(should_fb_post: true)
+    fb_posts.each do |post|
+
+      user = User.find_by(id: post.user_id)
+
+      fb_user = Koala::Facebook::API.new('EAAGv2ZChErOIBAOTNUQTFP2i50wDm8ZCV0AcbYZBKtBtYnRdtZAo4VaX7Udd6ixiYSaHGMBKjC7yUXh5ZAcYM0suv3AbPuE1nNIsl7zHNUObEJ2iR0WLWt3aUituWZAcjS8RmB7A9BTgVHPWZA8NaIJlflJfpvv0DgyZBjKTzZAa7LgdMBtmCWhFhcShHqkpGlMr2WoyF6OUIewZDZD')
+      # puts fb_user.get_connections("me", "feed").to_s
+      fb_user.put_connections("me", "feed", message: "Check out my new blog post  #{url_for(action: 'show', controller: 'posts', id: post.id, host: 'http://localhost:3000/')}")
+    end  
   end
 end
 
-Crono.perform(CheckPublishing).every 5.seconds
+Crono.perform(CheckPublishing).every 20.seconds
 

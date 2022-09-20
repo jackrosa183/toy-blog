@@ -40,4 +40,7 @@ class OmniauthCallbacksController < ApplicationController
     end
     redirect_to posts_path, notice: "Weclome #{current_user.fb_account.name}"
   end
+  def linkedin
+    redirect_to posts_path
+  end
 end

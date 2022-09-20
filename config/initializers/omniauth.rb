@@ -3,10 +3,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   Rails.application.credentials.dig(:twitter, :api_key), 
   Rails.application.credentials.dig(:twitter, :api_secret)
 
-  # provider :facebook,
-  # Rails.application.credentials.dig(:facebook, :api_id),
-  # Rails.application.credentials.dig(:facebook, :api_secret),
-
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -14,4 +10,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   Rails.application.credentials.dig(:facebook, :api_id),
   Rails.application.credentials.dig(:facebook, :api_secret)
 
+end
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :linkedin,
+  Rails.application.credentials.dig(:linkedin, :client_id),
+  Rails.application.credentials.dig(:linkedin, :client_secret),
+  scope: 'r_emailaddress'
 end

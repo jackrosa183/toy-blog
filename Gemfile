@@ -39,8 +39,16 @@ gem 'crono'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-linkedin-oauth2' 
+
 gem 'twitter'
 gem 'rails-autocomplete'
+
+gem 'faraday', '< 2'
+gem 'json'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
+gem 'addressable'
+gem 'koala', '~> 3.2'
 
 gem "devise", "~> 4.8.1"
 gem "autoprefixer-rails"
