@@ -8,7 +8,7 @@
 class CheckPublishing
   
   def perform
-    posts = Post.where(publish_date: Date.current).where(published: false)
+    posts = Post.where(publish_date: Date.current).where(published: false).where(should_tweet: true)
     posts.each do |post|
       user = User.find_by(id: post.user_id)
 

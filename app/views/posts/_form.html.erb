@@ -2,6 +2,7 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :tag_titles, required: false, label: 'Tags' %>
+  <%= f.input :should_tweet, required: true, label: 'AutoTweet?' %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
   <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
   <%= f.button :submit%>

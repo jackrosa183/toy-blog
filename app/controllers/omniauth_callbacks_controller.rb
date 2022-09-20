@@ -2,6 +2,7 @@ class OmniauthCallbacksController < ApplicationController
   def auth 
     request.env['omniauth.auth']
   end
+
   def twitter
     if current_user.twitter_account.nil?
       current_user.create_twitter_account(
@@ -10,7 +11,6 @@ class OmniauthCallbacksController < ApplicationController
         token: auth.credentials.token,
         secret: auth.credentials.secret,
         )
-      render plain: auth.to_s
     else 
       current_user.twitter_account.update(
         name: auth.info.name,
@@ -18,9 +18,7 @@ class OmniauthCallbacksController < ApplicationController
         token: auth.credentials.token,
         secret: auth.credentials.secret,
         )
-      render plain: "already exists " + current_user.twitter_account.username.to_s
-    end
+      end
+    redirect_to posts_path, notice: "Weclome  @#{current_user.twitter_account.username.to_s}"
   end
-  
-
 end
