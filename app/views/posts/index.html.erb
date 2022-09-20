@@ -15,7 +15,7 @@
 
   <%= render "/layouts/connect_twitter"%>
   <%= render "/layouts/connect_facebook"%>
-  <%= button_to "Connect Linkedin", "/auth/linkedin", method: :post, class: "btn-primary", data: { turbo: "false" }%>
+  <%= button_to "Connect Linkedin", "/auth/linkedin", method: :post, class: "btn-primary", data: { turbo: "false" }, content_type: "x-www-form-urlencoded" %>
   <%= will_paginate %>
   <%= render @posts.ordered.published %>
 
