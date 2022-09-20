@@ -38,6 +38,7 @@ gem 'pry', '~> 0.13.1'
 gem 'crono'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'twitter'
 gem 'rails-autocomplete'
 

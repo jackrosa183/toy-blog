@@ -6,24 +6,6 @@ class PostsTest < ApplicationSystemTestCase
     @post = Post.published.last
   end
 
-  test "user sees all posts" do
-    login_as users(:john)
-
-    visit posts_path
-
-    assert_text "janes post"
-    assert_text "johns post"
-    assert_text "johns second post"
-  end
-
-  test "admin only sees published posts" do
-    visit posts_path
-
-    assert_no_text "so advanced"
-    assert_text "old post"
-
-  end
-
   test "user can see their own unpublished posts" do
     travel_to Time.new(2022, 9, 14) do
       login_as users(:john)
@@ -43,14 +25,18 @@ class PostsTest < ApplicationSystemTestCase
 
       fill_in "Title", with: "Test Title"
       fill_in "Content", with: "Test Content"
+      fill_in "Tags", with: "Ruby Google"
 
       fill_in "post[publish_date]", with: "09142022"
+
       click_on "Create Post"
 
 
 
       assert_current_path posts_path
 
+      assert_text "Ruby"
+      assert_text "Google"
       assert_text "2022-09-14"
       assert_selector "h2", text: "Test Title"
       assert_selector "p", text: "Test Content"

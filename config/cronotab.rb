@@ -6,7 +6,7 @@
 # class should have a method `perform` without arguments.
 #
 class CheckPublishing
-  
+  include Rails.application.routes.url_helpers
   def perform
     posts = Post.where(publish_date: Date.current).where(published: false).where(should_tweet: true)
     posts.each do |post|
@@ -25,7 +25,7 @@ class CheckPublishing
 
       unless user.twitter_account.nil?
         puts "TWEEEET"
-        client.update("Check out my new blogpost  #{post.title}")
+        client.update("Check out my new blogpost #{url_for(action: 'show', controller: 'posts', id: post.id, host: 'http://localhost:3000/')}")
       else
       end
     end

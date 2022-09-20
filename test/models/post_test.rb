@@ -14,7 +14,6 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "Posts are in descending order" do
-    
     post_3 = Post.create(title: "first title", content: "first content", created_at: 10.minutes.ago, user: @user, publish_date: Date.current.yesterday)
     post_1 = Post.create(title: "third title", content: "third content", created_at: 3.minutes.ago, user: @user, publish_date: Date.current.yesterday)
     post_2 = Post.create(title: "second title", content: "second title", created_at: 5.minutes.ago, user: @user, publish_date: Date.current.yesterday)
@@ -46,5 +45,4 @@ class PostTest < ActiveSupport::TestCase
   assert post_1.invalid?
   assert post_1.errors.where(:content, :blank).present?
  end
-
 end
