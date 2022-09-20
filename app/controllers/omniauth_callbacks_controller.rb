@@ -21,4 +21,23 @@ class OmniauthCallbacksController < ApplicationController
       end
     redirect_to posts_path, notice: "Weclome  @#{current_user.twitter_account.username.to_s}"
   end
+
+  def facebook
+    if current_user.fb_account.nil?
+      current_user.create_fb_account(
+        uid: auth.uid,
+        name: auth.info.name,
+        email: auth.info.email,
+        token: auth.credentials.token,
+      )
+    else 
+      current_user.fb_account.update(
+        uid: auth.uid,
+        name: auth.info.name,
+        email: auth.info.email,
+        token: auth.credentials.token, 
+      )
+    end
+    redirect_to posts_path, notice: "Weclome #{current_user.fb_account.name}"
+  end
 end

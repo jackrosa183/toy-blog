@@ -2,8 +2,12 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <%= f.input :tag_titles, required: false, label: 'Tags' %>
-  <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
-  <%# <%= f.input :should_fb_post, required: false, label: 'Post to Facebook?' %> %>
+  <% unless current_user.twitter_account.nil?%>
+    <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
+  <% end %>
+  <% unless current_user.fb_account.nil? %>
+    <%= f.input :should_fb_post, required: false, label: 'Post to Facebook?'%>
+  <% end %>
   <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } %>
   <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
   <%= f.button :submit%>
@@ -13,10 +17,13 @@
     <%= link_to "Cancel", posts_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
 </div>
 
+<%= render '/layouts/connect_facebook' %>
+<%= render '/layouts/connect_twitter' %>
+
 <%# Link for result tags should link to adding ids to tag_ids params %>
 <%# nested form for post is where tag search should be? %>
 
-<%# <form action="<%= searches_path(turbo_frame: "search_results") %>" data-turbo-frame="search_results" class="peer" %>
+<%# <form action="<%= searches_path(turbo_frame: "search_results")" data-turbo-frame="search_results" class="peer" %> 
   <%# data-controller="form" data-action="invalid->form#hideValidationMessage:capture input->form#submit"> %>
   <%# <label for="search_query">Add Tags</label> %>
   <%# <input id="search_query" name="query" type="search" pattern=".*\w+.*" required autocomplete="off" %>
