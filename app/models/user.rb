@@ -10,5 +10,5 @@ class User < ApplicationRecord
   
   has_one :twitter_account, dependent: :destroy
   has_one :fb_account, dependent: :destroy
-
+  has_one :linkedin_account, dependent: :destroy
 end

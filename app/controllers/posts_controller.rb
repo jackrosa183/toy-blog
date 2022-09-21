@@ -65,7 +65,7 @@ class PostsController < ApplicationController
       if is_admin?
         @post = Post.find(params[:id])
       else
-        @post = current_user.posts.find(params[:id])          
+        @post = Post.find(params[:id])          
       end
     end
   end
