@@ -42,18 +42,26 @@ class OmniauthCallbacksController < ApplicationController
   end
 
   def linkedin
-    # binding.pry
-    # # read 'code' and 'state' url arguments and make post request
-    # exchange = Faraday.new(
-    #   url: "https://www.linkedin.com/oauth/v2/accessToken",
-    #   params: { grant_type: "authorization_code", code: "string",
-    #           client_id: Rails.application.credentials.dig(:linkedin, :client_id),
-    #           client_secret: Rails.application.credentials.dig(:linkedin, :client_secret),
-    #           redirect_uri: posts_path }
-    #   headers: { 'Content-Type' => 'x-www-form-urlencoded'}
-    # )
-    # response = exchange.post('/post') do |req|
-    # end
-    render plain: "#{auth}"
+    # render plain: "#{params[:code]}"
+    state = params[:state]
+    code = params[:code]
+    # read 'code' and 'state' url arguments and make post request
+
+    params = {grant_type: "authorization_code", code: code,
+            client_id: Rails.application.credentials.dig(:linkedin, :client_id),
+            client_secret: Rails.application.credentials.dig(:linkedin, :client_secret),
+            redirect_uri: "https://a75d-45-22-91-45.ngrok.io/auth/linkedin/callback" }
+
+    # encoded_params = URI.encode_www_form(params)
+    
+    exchange = Faraday.new(url: "https://www.linkedin.com/oauth/v2/accessToken",
+    headers: {'Content-Type' => 'x-www-form-urlencoded'})
+
+    response = exchange.get do |req|
+      req.params = params
+    end
+    
+    render plain: response.body
+    # render plain: request.original_url
   end
 end

@@ -45,7 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_202838) do
 
   create_table "linkedin_accounts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "code"
+    t.string "name", null: false
+    t.string "uid", null: false
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_linkedin_accounts_on_user_id"

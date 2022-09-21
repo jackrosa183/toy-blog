@@ -43,7 +43,7 @@ gem 'omniauth-linkedin-oauth2'
 
 gem 'twitter'
 gem 'rails-autocomplete'
-
+# gem 'omniauth-oauth2'
 gem 'faraday', '< 2'
 gem 'json'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
