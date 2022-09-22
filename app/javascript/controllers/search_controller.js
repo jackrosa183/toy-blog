@@ -14,7 +14,7 @@ export default class extends Controller {
     url.searchParams.append('query', e.target.value)
     console.log("Fetching Results")
     console.log(url)
-
+    //response includes heading
     this.abortController = new AbortController()
     fetch(url, {signal: this.abortController.signal })
       .then(response => response.text())

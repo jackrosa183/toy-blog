@@ -3,6 +3,7 @@
     <head>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= render "layouts/navbar" %>
     </head>
     <body>
     <header data-controller="combobox">
@@ -20,10 +21,9 @@
         </form>
       <% else %>
       <% end %>
-      <turbo-frame id="search_results" target="_top" class="empty:hidden peer-invalid:hidden"></turbo-frame>
+      <%# <turbo-frame id="search_results" target="_top" class="empty:hidden peer-invalid:hidden"></turbo-frame> %>
     </header>
 
-    <%= render "layouts/navbar" %>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
         <% flash.each do |type, msg| %>
