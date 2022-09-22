@@ -10,6 +10,9 @@ application.register("hello", HelloController)
 import FormController from "./form_controller"
 application.register("form", FormController)
 
+import SearchController from "./search_controller"
+application.register("search", SearchController)
+
 // import ComboboxController from "./combobox_controller"
 // application.register("combobox", ComboboxController)
 

@@ -1,7 +1,10 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
-  <%= f.input :tag_titles, required: false, label: 'Tags', input_html: { "data-controller" => "form" }%>
+  <div class="search_tag" data-controller="search" data-search-url-value="<%= searches_url%>">
+    <%= f.input :tag_titles, required: false, label: 'Tags', placeholder: "Search Tags", input_html: { "data-controller" => "form" }%>
+  </div>
+  
   <% unless current_user.twitter_account.nil? or @post.published %>
     <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
   <% end %>
