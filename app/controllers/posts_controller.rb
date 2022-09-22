@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :show, :new, :create, :update, :destroy, :edit]
   before_action :is_admin?, only: [:destroy]
-  
+  after_action :check_publishing, only: [:edit, :create]
 
   def index
     @posts = Post.published.paginate(page: params[:page], per_page: 2)
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
-
+    
     tags = post_params[:tag_titles].split(" ")
 
     puts "11111111111111111"
@@ -74,5 +74,14 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content, :user, 
                                   :publish_date, :tag, :tag_ids, :tag_titles, 
                                   :should_tweet, :should_fb_post)
+  end
+  def check_publishing
+    @post = Post.find(params[:id])
+    if @post.publish_date ==  DateTime.current.to_date
+      @post.published = true
+    else
+      @post.published = false
+    end
+    @post.save
   end
 end
