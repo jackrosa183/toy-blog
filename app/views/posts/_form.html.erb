@@ -2,7 +2,9 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <div class="search_tag" data-controller="search" data-search-url-value="<%= searches_url%>">
-    <%= f.input :tag_titles, required: false, label: 'Tags', placeholder: "Search Tags"%>
+    <%= f.input :tag_titles, required: false, label: 'Tags', placeholder: "Search Tags", input_html: {"data-action" => "keyup->search#fetchResults" }%>
+    <div data-search-target="results">
+    </div>
   </div>
 
   <% unless current_user.twitter_account.nil? or @post.published %>
