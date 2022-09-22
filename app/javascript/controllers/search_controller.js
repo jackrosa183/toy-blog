@@ -10,6 +10,11 @@ export default class extends Controller {
   fetchResults(e){
     const url = new URL(this.urlValue)
     console.log(e.target.value)
+    if(e.target.value == ""){
+      this.resultsTarget.innerHTML = ""
+      e.target.value = ""
+      return
+    }
     //console.log(this.queryTarget + "!!!!!!!!!!!")
     url.searchParams.append('query', e.target.value)
     console.log("Fetching Results")
@@ -22,8 +27,5 @@ export default class extends Controller {
         this.resultsTarget.innerHTML = html
       })
       .catch(() => {})
-  }
-  reset() {
-    console.log("Resetting")
   }
 }
