@@ -2,9 +2,9 @@
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
   <div class="search_tag" data-controller="search" data-search-url-value="<%= searches_url%>">
-    <%= f.input :tag_titles, required: false, label: 'Tags', placeholder: "Search Tags", input_html: { "data-controller" => "form" }%>
+    <%= f.input :tag_titles, required: false, label: 'Tags', placeholder: "Search Tags"%>
   </div>
-  
+
   <% unless current_user.twitter_account.nil? or @post.published %>
     <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
   <% end %>
