@@ -45,7 +45,21 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+
+    if @post.published = true
+      edit_params = params.require(:post).permit(:title, :content, :user,
+                                                  :tag, :tag_ids, :tag_titles)
+    else
+      edit_params = post_params
+    end
+
+    tags = edit_params[:tag_titles].split(" ")
+
+    tags.each do |t|
+      @post.tags << Tag.where(title: t).first_or_create
+    end
+    
+    if @post.update(edit_params)
       redirect_to posts_path, notice: "Post was successfully updated"
     else
       render :edit
@@ -77,14 +91,5 @@ class PostsController < ApplicationController
                                   :publish_date, :tag, :tag_ids, :tag_titles, 
                                   :should_tweet, :should_fb_post)
   end
-
-  def check_publishing
-    @post = Post.find(params[:id])
-    if @post.publish_date ==  DateTime.current.to_date
-      @post.published = true
-    else
-      @post.published = false
-    end
-    @post.save
-  end
 end
+
