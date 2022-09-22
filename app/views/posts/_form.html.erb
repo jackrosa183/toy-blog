@@ -1,7 +1,7 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
   <%= f.input :title, required: true %>
   <%= f.input :content, required: true %>
-  <%= f.input :tag_titles, required: false, label: 'Tags' %>
+  <%= f.input :tag_titles, required: false, label: 'Tags', input_html: { "data-controller" => "form" }%>
   <% unless current_user.twitter_account.nil? or @post.published %>
     <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
   <% end %>
@@ -13,6 +13,7 @@
 <div class="return_button p-4">
     <%= link_to "Cancel", posts_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
 </div>
+
 
 <%# Link for result tags should link to adding ids to tag_ids params %>
 <%# nested form for post is where tag search should be? %>
