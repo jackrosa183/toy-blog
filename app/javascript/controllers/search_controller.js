@@ -8,6 +8,9 @@ export default class extends Controller {
     console.log("search is totally connected")
   }
   fetchResults(e){
+    if(e.keycode = 32 ){
+      console.log("WTF SPACE")
+    }
     const url = new URL(this.urlValue)
 
     if(e.target.value == ""){
@@ -23,5 +26,8 @@ export default class extends Controller {
         this.resultsTarget.innerHTML = html
       })
       .catch(() => {})
+  }
+  addTag(e){
+
   }
 }
