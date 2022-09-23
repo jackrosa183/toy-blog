@@ -7,6 +7,9 @@ export default class extends Controller {
   connect() {
     console.log("search is totally connected")
   }
+  updateInput() {
+    console.log("update")
+  }
   fetchResults(e){
     if(e.keyCode == 32 ){
       console.log("space")
@@ -29,5 +32,6 @@ export default class extends Controller {
   }
   addTitle(e){
     console.log("clicked on " + e.target.value)
+    this.updateInput()
   }
 }

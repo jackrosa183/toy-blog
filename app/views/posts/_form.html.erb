@@ -12,14 +12,17 @@
   <% unless current_user.twitter_account.nil? or @post.published %>
     <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
   <% end %>
-  <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { min: Date.current } unless @post.published %>
+
+  <%= f.input :publish_date, as: :date, required: true, html5: true, input_html: { class: "w-96 p-2", min: Date.current } unless @post.published %>
   <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
-  <%= f.button :submit%>
+  <div class="p-4">
+      <%= f.button :submit %>
+  </div>
+<div class="return_button pb-10 ml-4">
+    <%= link_to "Cancel", posts_path, class: "btn-danger" %>
+</div>
 <% end %>
 
-<div class="return_button p-4">
-    <%= link_to "Cancel", posts_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" %>
-</div>
 
 
 <%# Link for result tags should link to adding ids to tag_ids params %>
