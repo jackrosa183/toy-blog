@@ -1,15 +1,15 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [ "query", "results" ]
+  static targets = [ "query", "results", "title" ]
   static values = { url: String }
 
   connect() {
     console.log("search is totally connected")
   }
   fetchResults(e){
-    if(e.keycode = 32 ){
-      console.log("WTF SPACE")
+    if(e.keyCode == 32 ){
+      console.log("space")
     }
     const url = new URL(this.urlValue)
 

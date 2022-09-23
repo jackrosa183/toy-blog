@@ -6,21 +6,21 @@
     <%= render "layouts/navbar" %>
     </head>
     <body>
-    <header data-controller="combobox">
-      <% if user_signed_in?%>
-        <form action="<%= searches_path(turbo_frame: "search_results") %>" data-turbo-frame="search_results" class="peer"
-            data-controller="form" data-action="invalid->form#hideValidationMessage:capture input->form#submit">
-          <label for="search_query">Search</label>
-          <input id="search_query" name="query" type="search" pattern=".*\w+.*" required autocomplete="off"
-            data-combobox-target="input" data-action="focus->combobox#start focusout->combobox#stop">
+    <%# <header data-controller="combobox"> %>
+      <%# <% if user_signed_in?%> 
+        <%# <form action="<%= searches_path(turbo_frame: "search_results")" data-turbo-frame="search_results" class="peer" %> 
+            <%# data-controller="form" data-action="invalid->form#hideValidationMessage:capture input->form#submit"> %>
+          <%# <label for="search_query">Search</label> %>
+          <%# <input id="search_query" name="query" type="search" pattern=".*\w+.*" required autocomplete="off" %>
+            <%# data-combobox-target="input" data-action="focus->combobox#start focusout->combobox#stop"> %>
 
-          <button data-form-target="submit">
-            Search
-          </button>
+          <%# <button data-form-target="submit"> %>
+            <%# Search %>
+          <%# </button> %>
 
-        </form>
-      <% else %>
-      <% end %>
+        <%# </form> %>
+      <%# <% else %> 
+      <%# <% end %> 
       <%# <turbo-frame id="search_results" target="_top" class="empty:hidden peer-invalid:hidden"></turbo-frame> %>
     </header>
 

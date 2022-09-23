@@ -1,5 +1,5 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
-  <%= f.input :title, required: true %>
+  <%= f.input :title, required: true%>
   <%= f.input :content, required: true %>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
     <%= f.input :tag_titles, required: false, label: 'Tags', 

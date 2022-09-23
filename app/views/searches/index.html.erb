@@ -1,17 +1,14 @@
 <%# <turbo-frame id="<%= params.fetch(:turbo_frame, "search_results") %>
-<% if @tags.count == 0 %>
-  <h1>No results found for '<%= params[:query] %>'</h1>
-<% else %>
-  <h1 class="underline" >Results</h1>
-<% end %>
 
-<ul role="listbox" data-combobox-target="list">
-  <% @tags.each do |t| %>
-    <li>
-      <%= link_to highlight(t.title, params[:query]), tag_path(t),
-          id: dom_id(t, :search_result), role: "option", class: "aria-selected:outline-black" %>
-      
-    </li>
-  <% end %>
-</ul>
+<% unless @tags.count == 0 %>
+  <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+      data-controller="search">
+    <% @tags.each do |t| %>
+      <li data-search-target="title">
+        <%= link_to t.title, posts_path%>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+<% end %>
 <%# </turbo-frame> %>
