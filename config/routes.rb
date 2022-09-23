@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: "omniauth_callbacks#twitter"
   get '/auth/facebook/callback', to: "omniauth_callbacks#facebook"
   get '/auth/linkedin/callback/', to: "omniauth_callbacks#linkedin"
-  get '/add_tag/:post_id/:id', to: "tags#add"
+  get '/add_tag/:id', to: "tags#add", as: "add_tag"
 
   resources :searches, only: [:index]
   resources :posts do

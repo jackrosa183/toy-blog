@@ -27,7 +27,7 @@ export default class extends Controller {
       })
       .catch(() => {})
   }
-  addTag(e){
-
+  addTitle(e){
+    console.log("clicked on " + e.target.value)
   }
 }

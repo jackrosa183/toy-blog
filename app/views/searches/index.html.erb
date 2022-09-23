@@ -4,8 +4,10 @@
   <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
       data-controller="search">
     <% @tags.each do |t| %>
-      <li data-search-target="title">
-        <%= link_to t.title, posts_path%>
+      <li>
+        <a data-search-target="title" data-action="click->search#addTitle">
+          <%= t.title %>
+        </a>
       </li>
     <% end %>
   </ul>
