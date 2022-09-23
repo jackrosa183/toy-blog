@@ -47,8 +47,9 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'block', error_class: 'text-red-500'
-    b.use :input, class:"block p-2.5 w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    # b.use :input, class: 'shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out', error_class: 'border-red-500', valid_class: 'border-green-400'
+    # b.use :input, class:"block p-2.5 w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    b.use :input, class: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    # b.use :input, class: 'shadow appearance-none border border-gray-300 w-1/2 py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out rounded', error_class: 'border-red-500', valid_class: 'border-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
@@ -102,12 +103,12 @@ SimpleForm.setup do |config|
     end
     b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
       # ba.use :input, class: 'flex w-auto w-auto text-gray-500 text-sm border-gray-300 rounded p-2', error_class: 'text-red-500', valid_class: 'text-green-400'
-      ba.use :input, class: 'flex w-auto w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
+      ba.use :input, class: 'flex w-auto w-auto shadow appearance-none border border-gray-300 rounded w-96 p-2 focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
-  
+
   # vertical range input
   config.wrappers :vertical_range, tag: 'div', class: 'my-4', error_class: 'text-red-500', valid_class: 'text-green-400' do |b|
     b.use :html5

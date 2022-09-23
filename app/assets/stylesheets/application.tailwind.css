@@ -19,6 +19,9 @@
   .btn-secondary {
     @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full 
   }
+  .container {
+    @apply ml-2
+  }
 }
 
 .peer:invalid ~ .peer-invalid\:hidden               { display: none; }

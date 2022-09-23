@@ -10,6 +10,7 @@ export default class extends Controller {
   updateInput() {
     console.log("update")
   }
+  
   fetchResults(e){
     if(e.keyCode == 32 ){
       console.log("space")
@@ -31,7 +32,10 @@ export default class extends Controller {
       .catch(() => {})
   }
   addTitle(e){
-    console.log("clicked on " + e.target.value)
-    this.updateInput()
+    // debugger
+    console.log("clicked on " + e.target.dataset.title)
+    // this.updateInput()
+    this.queryTarget.value = e.target.dataset.title + " "
+
   }
 }
