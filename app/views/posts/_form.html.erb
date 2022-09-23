@@ -2,10 +2,14 @@
   <%= f.input :title, required: true%>
   <%= f.input :content, required: true %>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
+    <ul name="added tags" data-search-target="tags">
+
+    </ul>
     <%= f.input :tag_titles, required: false, label: 'Tags', 
                 placeholder: "Search Tags", 
-                input_html: {"data-action" => "keyup->search#fetchResults", "data-search-target" => "query" },
-                autofocus: true %>
+                input_html: { "data-action" => "keyup->search#fetchResults", "data-search-target" => "query" },
+                autofocus: true,
+                autocomplete: false %>
     <div data-search-target="results"></div>
   </div>
 
