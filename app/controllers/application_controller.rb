@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       super
     else
-      redirect_to new_user_session_path, warning: "Please login before continuing"
+      redirect_to new_user_session_path, alert: "Please login before continuing"
     end
   end
   def is_admin?

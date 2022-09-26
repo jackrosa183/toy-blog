@@ -20,11 +20,7 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
-    if @post.publish_date == DateTime.current.to_date
-      @post.published = true
-    else
-    end
-
+  
     tags = post_params[:extracted_tags]
 
       
@@ -71,7 +67,7 @@ class PostsController < ApplicationController
   
   def set_post
     unless user_signed_in?
-      redirect_to new_user_session_path, notice: "Please login before continuing"
+      redirect_to new_user_session_path, alert: "Please login before continuing"
     else
       if is_admin?
         @post = Post.find(params[:id])
