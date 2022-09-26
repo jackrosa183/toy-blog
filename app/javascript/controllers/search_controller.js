@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { List } from "immutable";
 
 export default class extends Controller {
-  static targets = [ "query", "results", "tags"]
+  static targets = [ "query", "results", "tags", "addedTags"]
   static values = { url: String }
 
   connect() {
@@ -11,11 +11,14 @@ export default class extends Controller {
 
   fetchResults(e){
     if(e.keyCode == 32 ){
-      var li = document.createElement("a")
-      li.innerHTML = this.queryTarget.value
-      li.className = "btn-secondary-smaller"
-      this.tagsTarget.append(li)
-      this.reset()
+      var a = document.createElement("a")
+      a.innerHTML = this.queryTarget.value
+      a.className = "btn-secondary-smaller"
+      a.dataset.searchTarget = "addedTags"
+      a.dataset.action = "click->search#removeTag"
+      
+      this.checkExistence(a)
+  
     }
     const url = new URL(this.urlValue)
 
@@ -32,15 +35,24 @@ export default class extends Controller {
       })
       .catch(() => {})
   }
+
+
   addTitle(e){
     
-    var li = document.createElement("a")
-    li.innerHTML = e.target.dataset.title + " "
-    li.className = "btn-secondary-smaller"
+    var a = document.createElement("a")
+    a.innerHTML = e.target.dataset.title + " "
+    a.className = "btn-secondary-smaller"
+    a.dataset.searchTarget = "addedTags"
+    a.dataset.action = "click->search#removeTag"
+
     console.log("clicked on " + e.target.dataset.title)
 
-    
-    if(this.tagsTarget.innerHTML.includes(li.innerHTML)){
+    this.checkExistence(a)
+
+  }
+
+  checkExistence(element){
+    if(this.tagsTarget.innerHTML.includes(element.innerHTML)){
       console.log("already there")
       console.log(this.tagsTarget.innerHTML)
       this.reset()
@@ -49,13 +61,14 @@ export default class extends Controller {
     else{
       
       console.log("not here yet")
-      this.tagsTarget.append(li)
+      this.tagsTarget.append(element)
       this.reset() 
       return 
-    }
-    
-    // e.target.dataset.title + " "
-    
+    } 
+  }
+  removeTag(e){
+    console.log("removed " + e.target.innerHTML)
+    e.target.remove()
   }
   reset(){
     this.queryTarget.value = ""
