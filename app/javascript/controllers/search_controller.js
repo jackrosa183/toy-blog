@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
-import { List } from "immutable";
+// import { Binding } from "@hotwired/stimulus/dist/types/core/binding";
+// import { List } from "immutable";
 
 export default class extends Controller {
   static targets = [ "query", "results", "tags", "addedTags"]
@@ -12,11 +13,11 @@ export default class extends Controller {
   fetchResults(e){
     if(e.keyCode == 32 ){
       var a = document.createElement("a")
-      a.innerHTML = this.queryTarget.value
-      a.className = "btn-secondary-smaller"
+      a.innerHTML = this.queryTarget.value.slice(0, -1)
+      a.className = "btn-hover-delete"
       a.dataset.searchTarget = "addedTags"
       a.dataset.action = "click->search#removeTag"
-      
+      //bug: REMOVE SPACE
       this.checkExistence(a)
   
     }
@@ -41,7 +42,7 @@ export default class extends Controller {
     
     var a = document.createElement("a")
     a.innerHTML = e.target.dataset.title
-    a.className = "btn-secondary-smaller"
+    a.className = "btn-hover-delete"
     a.dataset.searchTarget = "addedTags"
     a.dataset.action = "click->search#removeTag"
 
@@ -52,12 +53,12 @@ export default class extends Controller {
   }
 
   checkExistence(element){
+    debugger
     if(this.tagsTarget.innerHTML.includes(element.innerHTML.toLowerCase())){
       this.reset()
       return
     }
-    else{
-      
+    else{  
       console.log("not here yet")
       this.tagsTarget.append(element)
       const input = document.createElement("input")

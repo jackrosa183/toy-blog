@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
-  
     tags = post_params[:extracted_tags]
 
       
@@ -83,4 +82,3 @@ class PostsController < ApplicationController
                                   :should_tweet, :should_fb_post, extracted_tags: [])
   end
 end
-
