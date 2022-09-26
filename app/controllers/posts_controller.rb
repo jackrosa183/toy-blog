@@ -19,12 +19,11 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.build(post_params)
 
+    @post = current_user.posts.build(post_params)
 
     tags = post_params[:extracted_tags]
 
-      
     if @post.save
       redirect_to posts_path, notice: "Post was successfully created"
     else

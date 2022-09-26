@@ -52,7 +52,7 @@ export default class extends Controller {
   }
 
   checkExistence(element){
-    if(this.tagsTarget.innerHTML.includes(element.innerHTML.toLowerCase())){
+    if(this.tagsTarget.innerHTML.toLowerCase().includes(element.innerHTML.toLowerCase())){
       this.reset()
       return
     }
