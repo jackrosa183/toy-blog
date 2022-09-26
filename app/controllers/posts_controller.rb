@@ -24,14 +24,9 @@ class PostsController < ApplicationController
       @post.published = true
     else
     end
-    tags = post_params[:tag_titles].split(" ")
 
-    puts "11111111111111111"
-    puts tags 
+    tags = post_params[:extracted_tags]
 
-    tags.each do |t|
-      @post.tags << Tag.where(title: t).first_or_create
-    end
       
     if @post.save
       redirect_to posts_path, notice: "Post was successfully created"
@@ -88,8 +83,8 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :user, 
-                                  :publish_date, :tag, :tag_ids, :tag_titles, 
-                                  :should_tweet, :should_fb_post)
+                                  :publish_date, :tag_titles, 
+                                  :should_tweet, :should_fb_post, extracted_tags: [])
   end
 end
 

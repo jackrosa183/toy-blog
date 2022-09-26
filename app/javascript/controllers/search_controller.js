@@ -40,7 +40,7 @@ export default class extends Controller {
   addTitle(e){
     
     var a = document.createElement("a")
-    a.innerHTML = e.target.dataset.title + " "
+    a.innerHTML = e.target.dataset.title
     a.className = "btn-secondary-smaller"
     a.dataset.searchTarget = "addedTags"
     a.dataset.action = "click->search#removeTag"
@@ -53,8 +53,6 @@ export default class extends Controller {
 
   checkExistence(element){
     if(this.tagsTarget.innerHTML.includes(element.innerHTML)){
-      console.log("already there")
-      console.log(this.tagsTarget.innerHTML)
       this.reset()
       return
     }
@@ -62,6 +60,11 @@ export default class extends Controller {
       
       console.log("not here yet")
       this.tagsTarget.append(element)
+      const input = document.createElement("input")
+      input.value = element.innerHTML
+      input.name = "post[extracted_tags][]"
+      input.type = "hidden"
+      this.tagsTarget.after(input)
       this.reset() 
       return 
     } 

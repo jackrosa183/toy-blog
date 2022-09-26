@@ -13,6 +13,13 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   
   attr_accessor :tag_titles
+  attr_accessor :extracted_tags
 
+  def extracted_tags=(tag_titles)
+    tag_titles.each do |t|
+      tags << Tag.where(title: t).first_or_create
+      # binding.pry
+    end
+  end
 end
 

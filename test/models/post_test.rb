@@ -45,4 +45,12 @@ class PostTest < ActiveSupport::TestCase
   assert post_1.invalid?
   assert post_1.errors.where(:content, :blank).present?
  end
+
+ test "Post gets correct extracted tags" do
+  post_1 = posts(:one)
+  post_1.extracted_tags = ["ruby", "rails"]
+  puts post_1.tags.map(&:title)
+
+  assert_equal 2, post_1.reload.tags.count
+ end
 end

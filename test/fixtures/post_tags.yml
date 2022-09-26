@@ -2,7 +2,7 @@
 
 one:
   tag: ruby
-  post: one
+  post: two
 
 two:
   tag: elixir

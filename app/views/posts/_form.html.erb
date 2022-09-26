@@ -5,6 +5,7 @@
     <div name="added tags" data-search-target="tags">
 
     </div>
+    
     <%= f.input :tag_titles, required: false, label: 'Tags', 
                 placeholder: "Search Tags", 
                 input_html: { "data-action" => "keyup->search#fetchResults", "data-search-target" => "query" },
