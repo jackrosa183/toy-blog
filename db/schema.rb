@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_20_202838) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_201100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_202838) do
     t.date "publish_date"
     t.boolean "published", default: false
     t.boolean "should_tweet", default: false
-    t.boolean "should_fb_post", default: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

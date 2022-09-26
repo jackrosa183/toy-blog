@@ -76,6 +76,6 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :user, 
                                   :publish_date, 
-                                  :should_tweet, :should_fb_post, extracted_tags: [])
+                                  :should_tweet, extracted_tags: [])
   end
 end
