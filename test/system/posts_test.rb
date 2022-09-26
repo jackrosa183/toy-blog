@@ -25,7 +25,6 @@ class PostsTest < ApplicationSystemTestCase
 
       fill_in "Title", with: "Test Title"
       fill_in "Content", with: "Test Content"
-      fill_in "Tags", with: "Ruby Google"
 
       fill_in "post[publish_date]", with: "09142022"
 
@@ -35,8 +34,6 @@ class PostsTest < ApplicationSystemTestCase
 
       assert_current_path posts_path
 
-      assert_text "Ruby"
-      assert_text "Google"
       assert_text "2022-09-14"
       assert_selector "h2", text: "Test Title"
       assert_selector "p", text: "Test Content"

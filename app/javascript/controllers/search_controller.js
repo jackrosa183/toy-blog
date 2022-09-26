@@ -17,7 +17,6 @@ export default class extends Controller {
       a.className = "btn-hover-delete"
       a.dataset.searchTarget = "addedTags"
       a.dataset.action = "click->search#removeTag"
-      //bug: REMOVE SPACE
       this.checkExistence(a)
   
     }
@@ -53,7 +52,6 @@ export default class extends Controller {
   }
 
   checkExistence(element){
-    debugger
     if(this.tagsTarget.innerHTML.includes(element.innerHTML.toLowerCase())){
       this.reset()
       return

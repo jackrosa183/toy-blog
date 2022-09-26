@@ -20,6 +20,8 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
+
+
     tags = post_params[:extracted_tags]
 
       
@@ -37,17 +39,12 @@ class PostsController < ApplicationController
   def update
 
     if @post.published = true
-      edit_params = params.require(:post).permit(:title, :content, :user,
-                                                  :tag, :tag_ids, :tag_titles)
+      edit_params = params.require(:post).permit(:title, :content, :user, extracted_tags: [])
     else
       edit_params = post_params
     end
 
-    tags = edit_params[:tag_titles].split(" ")
-
-    tags.each do |t|
-      @post.tags << Tag.where(title: t).first_or_create
-    end
+    tags = edit_params[:extracted_tags]
     
     if @post.update(edit_params)
       redirect_to posts_path, notice: "Post was successfully updated"
@@ -78,7 +75,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :user, 
-                                  :publish_date, :tag_titles, 
+                                  :publish_date, 
                                   :should_tweet, :should_fb_post, extracted_tags: [])
   end
 end

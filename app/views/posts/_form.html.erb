@@ -5,12 +5,14 @@
     <div name="added tags" data-search-target="tags">
 
     </div>
-    
-    <%= f.input :tag_titles, required: false, label: 'Tags', 
-                placeholder: "Search Tags", 
-                input_html: { "data-action" => "keyup->search#fetchResults", "data-search-target" => "query" },
-                autofocus: true,
-                autocomplete: false %>
+
+    <input class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 string optional" 
+          data-action="keyup->search#fetchResults" 
+          data-search-target="query" 
+          autofocus="autofocus" 
+          placeholder="Search Tags" 
+          type="text">
+
     <div data-search-target="results"></div>
   </div>
 

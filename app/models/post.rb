@@ -12,7 +12,6 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   
-  attr_accessor :tag_titles
   attr_accessor :extracted_tags
 
   def extracted_tags=(tag_titles)
