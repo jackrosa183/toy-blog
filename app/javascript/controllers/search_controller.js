@@ -64,6 +64,7 @@ export default class extends Controller {
       input.value = element.innerHTML
       input.name = "post[extracted_tags][]"
       input.type = "hidden"
+      input.id = "hidden" + element.innerHTML
       this.tagsTarget.after(input)
       this.reset() 
       return 
@@ -72,6 +73,10 @@ export default class extends Controller {
   removeTag(e){
     console.log("removed " + e.target.innerHTML)
     e.target.remove()
+
+    const inputToRemove = document.getElementById("hidden" + e.target.innerHTML)
+    inputToRemove.remove()
+
   }
   reset(){
     this.queryTarget.value = ""
