@@ -33,21 +33,24 @@ export default class extends Controller {
       .catch(() => {})
   }
   addTitle(e){
-    // debugger
-    console.log("clicked on " + e.target.dataset.title)
-    // this.updateInput()
-    this.queryTarget.value = ""
-
+    
     var li = document.createElement("a")
     li.innerHTML = e.target.dataset.title + " "
     li.className = "btn-secondary-smaller"
+    console.log("clicked on " + e.target.dataset.title)
 
-    if(this.tagsTarget.innerHTML.includes(li)){
+    
+    if(this.tagsTarget.innerHTML.includes(li.innerHTML)){
       console.log("already there")
-      this.tagsTarget.append(li)
+      console.log(this.tagsTarget.innerHTML)
+      this.reset()
+      return
     }
     else{
-      this.reset()
+      
+      console.log("not here yet")
+      this.tagsTarget.append(li)
+      this.reset() 
       return 
     }
     
