@@ -2,5 +2,7 @@
   <div class="p-5">
     <%= link_to "Back to posts", posts_path, class: "btn-secondary" %>
   </div>
-  <%= render "form" %>
+  <%= turbo_frame_tag "turbo_new_post" do %>
+    <%= render "form" %>
+  <% end %>
 </main>

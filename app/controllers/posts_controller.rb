@@ -22,12 +22,14 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     # @staged_tags = []
     tags = post_params[:extracted_tags]
-
+    if @post.publish_date = DateTime.current
+      @post.published = true
+    else
+    end
     if @post.save
       redirect_to posts_path, notice: "Post was successfully created"
     else
-      flash[:alert] = "Post must have title and content"
-      render :new
+      redirect_to new_post_path, alert: @post.errors.full_messages
     end
   end 
 
@@ -37,7 +39,7 @@ class PostsController < ApplicationController
       @staged_tags << st
     end
     
-    @editing = true;
+    @editing = true
     @post.tags = []
     # debugger 
   end
@@ -55,7 +57,7 @@ class PostsController < ApplicationController
     if @post.update(edit_params)
       redirect_to posts_path, notice: "Post was successfully updated"
     else
-      render :edit
+      redirect_to edit_post_path, alert: @post.errors.full_messages
     end
   end
 
