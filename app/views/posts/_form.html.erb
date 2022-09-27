@@ -2,11 +2,12 @@
   <%= f.input :title, required: true%>
   <%= f.input :content, required: true %>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
-    <div name="added tags" data-search-target="tags">
+    <div name="added tags" data-search-target="tags" class="p-2">
       <% @staged_tags.each do |t| %>
-        <%# <% current_tag = Tag.find_by(id: t)%> 
-        <a class="btn-hover-delete" data-action="click->search#removeTag"><%= t.title%></a>
-        <input type="hidden" name="post[extracted_tags][]" id="<%="hidden" + t.title%>" value="<%= t.title %>">
+        <span class="px-0.5">
+          <a class="btn-hover-delete" data-action="click->search#removeTag"><%= t.title%></a>
+          <input type="hidden" name="post[extracted_tags][]" id="<%="hidden" + t.title%>" value="<%= t.title %>">
+        </span>
       <% end unless @staged_tags.nil?%>
     </div>
 

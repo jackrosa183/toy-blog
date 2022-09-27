@@ -58,7 +58,10 @@ export default class extends Controller {
     }
     else{  
       console.log("not here yet")
-      this.tagsTarget.append(element)
+      const span = document.createElement("span")
+      this.tagsTarget.append(span)
+      span.append(element)
+      span.className = "px-0.5"
       const input = document.createElement("input")
       input.value = element.innerHTML
       input.name = "post[extracted_tags][]"
