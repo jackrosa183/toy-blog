@@ -3,10 +3,11 @@
   <%= f.input :content, required: true %>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
     <div name="added tags" data-search-target="tags">
-      <% @post.tags.each do |t| %>
+      <% @staged_tags.each do |t| %>
+        <%# <% current_tag = Tag.find_by(id: t)%> 
         <a class="btn-hover-delete" data-action="click->search#removeTag"><%= t.title%></a>
-        <%= hidden_field_tag ("hidden" + t.title) %>
-      <% end %>
+        <input type="hidden" name="post[extracted_tags][]" id="<%="hidden" + t.title%>" value="<%= t.title %>">
+      <% end unless @staged_tags.nil?%>
     </div>
 
     <input class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 string optional" 

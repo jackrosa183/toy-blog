@@ -19,9 +19,8 @@ class PostsController < ApplicationController
   end
   
   def create
-
     @post = current_user.posts.build(post_params)
-
+    # @staged_tags = []
     tags = post_params[:extracted_tags]
 
     if @post.save
@@ -33,6 +32,13 @@ class PostsController < ApplicationController
   end 
 
   def edit
+    @staged_tags = []
+    @post.tags.each do |st|
+      @staged_tags << st
+    end
+    
+    @post.tags = []
+    # debugger 
   end
 
   def update
