@@ -37,6 +37,7 @@ class PostsController < ApplicationController
       @staged_tags << st
     end
     
+    @editing = true;
     @post.tags = []
     # debugger 
   end
