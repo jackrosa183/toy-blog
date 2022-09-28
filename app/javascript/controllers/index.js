@@ -13,6 +13,8 @@ application.register("form", FormController)
 import SearchController from "./search_controller"
 application.register("search", SearchController)
 
+import CommentController from "./comment_controller"
+application.register("comment", CommentController)
 // import ComboboxController from "./combobox_controller"
 // application.register("combobox", ComboboxController)
 

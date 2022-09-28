@@ -9,10 +9,6 @@
 
   <% if comment.user == current_user %>
     <div class="flex items-center ml-2">
-      <%= link_to "edit",
-        edit_post_comment_path(comment, comment.post_id), 
-        class: "btn-primary-smaller"%>
-
       <%= button_to "Delete Comment", 
           post_comment_path(comment.post.id, comment.id, page: params[:page]), 
           method: :delete,
