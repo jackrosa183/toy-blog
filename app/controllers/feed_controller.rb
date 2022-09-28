@@ -12,10 +12,7 @@ class FeedController < ActionController::Base
     end
     render json: posts
   end
+  
   def rss 
-    respond_to do |format|
-      format.html
-      format.xml { render :layout => false }
-    end
   end
 end
