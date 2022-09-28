@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
 
-  get 'feed', to: "feed#feed"
+  get 'json_feed', to: "feed#json_feed"
+  get 'rss_feed', to: "feed#rss", format: 'xml'
   get '/auth/twitter/callback', to: "omniauth_callbacks#twitter"
   get '/auth/facebook/callback', to: "omniauth_callbacks#facebook"
   get '/auth/linkedin/callback/', to: "omniauth_callbacks#linkedin"

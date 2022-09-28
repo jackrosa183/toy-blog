@@ -1,7 +1,7 @@
 class FeedController < ActionController::Base
-  def feed
-    posts = []
 
+  def json_feed
+    posts = []
     Post.ordered.each do |post|
       post_hash = {}
       post_hash[:title] = post.title
@@ -11,5 +11,11 @@ class FeedController < ActionController::Base
       posts << post_hash
     end
     render json: posts
+  end
+  def rss 
+    respond_to do |format|
+      format.html
+      format.xml { render :layout => false }
+    end
   end
 end
