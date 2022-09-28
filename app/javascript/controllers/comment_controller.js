@@ -8,6 +8,6 @@ export default class extends Controller {
   }
   emptyInput() {
     console.log("emptying!")
-    setTimeout(() => { this.inputTarget.value = ""}, 5)
+    setTimeout(() => { this.inputTarget.value = ""}, 1)
   }
 }
