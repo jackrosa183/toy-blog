@@ -25,9 +25,11 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "comment_content", with: "Cool post!", match: :first
     click_on "Comment", match: :first 
     assert_current_path "/posts/?page=2"
-
+    sleep 1
+    assert_text "Cool post!", maximum: 1
     click_on "Delete Comment"
     assert_current_path "/posts/?page=2"
+    assert_no_text "Cool post!"
   end
 
   test "creating a new post" do
