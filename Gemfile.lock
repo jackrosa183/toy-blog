@@ -161,6 +161,10 @@ GEM
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     json (2.6.2)
+    jsonapi-resources (0.10.7)
+      activerecord (>= 4.1)
+      concurrent-ruby
+      railties (>= 4.1)
     jwt (2.5.0)
     koala (3.2.0)
       addressable
@@ -372,6 +376,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   json
+  jsonapi-resources
   koala (~> 3.2)
   omniauth
   omniauth-facebook

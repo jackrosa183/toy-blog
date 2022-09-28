@@ -32,6 +32,7 @@ gem "jbuilder"
 
 gem "simple_form", "~> 5.1.0"
 gem 'simple_form-tailwind'
+gem 'jsonapi-resources'
 
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 gem 'pry', '~> 0.13.1'
