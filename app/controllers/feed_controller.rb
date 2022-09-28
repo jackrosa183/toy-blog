@@ -12,7 +12,8 @@ class FeedController < ActionController::Base
     end
     render json: posts
   end
-  
+
   def rss 
+    @posts = Post.ordered[0..5]
   end
 end
