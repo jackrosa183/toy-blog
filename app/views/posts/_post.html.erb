@@ -1,48 +1,51 @@
 <main class="container ml-3 md-flex pt-2 pb-2">
-    <div class="border-2 border-blue-500 border-opacity-75 md:border-opacity-50 rounded-3xl p-2">
-      <div class= "post p-2 ml-2">
-        <%= link_to post_path(post) do %>
-          <div class="post__title">
-            <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
-              <% if post.publish_date > Date.current %>
-                <%= post.title + " (Unpublished) until " + post.publish_date.to_s %>
-              <% else %>
-                <%= post.title %>
-              <% end %>
-            </h2>
-          </div>
-        <% end %>
-        
-        <div class="post__content">
-          <%= tag.p post.content %>
+  <div class="border-2 border-blue-500 border-opacity-75 md:border-opacity-50 rounded-3xl p-2">
+    <div class= "post p-2 ml-2">
+      <%= link_to post_path(post) do %>
+        <div class="post__title">
+          <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
+            <% if post.publish_date > Date.current %>
+              <%= post.title + " (Unpublished) until " + post.publish_date.to_s %>
+            <% else %>
+              <%= post.title %>
+            <% end %>
+          </h2>
         </div>
-
-        <p class="post_details italic text-xs flex-right inset-y-0 pt-10 pb-2">
-          <%= "published " + post.publish_date.to_s %>
-          <%= "by " + post.user.email.to_s%>
-        </p>
+      <% end %>
       
-        <%= render "posts/actions", post: post %>
-        
+      <div class="post__content">
+        <%= tag.p post.content %>
       </div>
 
-      <% post.tags.each do |t|%>
-        <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full"%>
-      <% end %>
-
-      <%= render "posts/comment_form", post: post %>
+      <p class="post_details italic text-xs flex-right inset-y-0 pt-10 pb-2">
+        <%= "published " + post.publish_date.to_s %>
+        <%= "by " + post.user.email.to_s%>
+      </p>
+    
+      <%= render "posts/actions", post: post %>
       
+    <% post.tags.each do |t|%>
+        <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full"%>
+    <% end %>
 
-      <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-blue-600 ml-2">
-        Comments
-      </h6>
+    <%= render "posts/comment_form", post: post %>
+    
+    <h6 class="font-medium leading-tight text-base text-center text-blue-600">
+      <% if post.comments.count > 0 %>
+        <%= "Comments: " + post.comments.count.to_s %>
+      <% else %>
+        <%= "No comments yet" %>
+      <% end %>
+    </h6>
 
+    <%= turbo_frame_tag "comment_" + post.id.to_s do %>
       <% if post.comments.size > 0 %>
         <%= render post.comments %>
       <% else %>
       <% end %>
-
-      </div>
+    <% end %>
     </div>
+    </div>
+  </div>
 </main>
 

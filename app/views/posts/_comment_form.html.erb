@@ -1,10 +1,10 @@
-<div class="comment_form ml-2">
+<div class="comment_form">
   <%= form_with(model: Comment.new, url: post_comments_path(post), remote: true) do |f| %>
-    <div class="field rounded-3xl p-2">
+    <div class="field rounded-3xl pt-2 pb-2">
         <%= f.text_area :content, placeholder: "Comment...", class: "block p-2.5 w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
     </div>
-    <span id="comment_button">
-        <%= f.submit "Comment", class: "btn-primary" %>
-    </span>
+    <div class="pt-0.5 pb-0.5">
+      <%= f.submit "Comment", class: "btn-primary", data: { turbo_frame: "comment_" + post.id.to_s, disable_with: false }, name: params[:page] %>
+    </div>
   <% end %>
 </div>
