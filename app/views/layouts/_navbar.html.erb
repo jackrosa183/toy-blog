@@ -1,15 +1,18 @@
 <div class="navbar flex p-2 pt-4 ml-2">
   <%= link_to root_path do %>
-    <h1 class="font-bold text-6xl text-blue-500 ml-4 pt-2"> Jack's Blog </h1>
+    <h1 class="font-bold text-6xl text-blue-500 ml-4 pt-2 drop-shadow-2xl"> Jack's Blog </h1>
   <% end %>
   <div class= "navbar_actions">
     <% if user_signed_in? %>
 
-      <div class="navbar_logout pt-5">
+      <div class="navbar_logout pt-5 display flex">
         <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn-danger-smaller" %>
+        <%= render "/layouts/connect_twitter" %>
+        <%= render "/layouts/connect_facebook" %>
+        <%= button_to "Connect Linkedin", "/auth/linkedin", method: :post, class: "btn-primary-smaller", data: { turbo: "false" }, content_type: "x-www-form-urlencoded" %>
       </div>
 
-      <%if is_admin? %>
+      <% if is_admin? %>
         <div class="navbar_users pt-5">
           <%= button_to "Users", users_path, method: :get, class: "btn-primary" %>
         </div>

@@ -1,4 +1,4 @@
 <% if current_user.fb_account.nil?%>
-  <%= button_to "Connect Facebook", "/auth/facebook", method: :post, class: "btn-primary", data: { turbo: "false" }%>
+  <%= button_to "Connect Facebook", "/auth/facebook", method: :post, class: "btn-primary-smaller", data: { turbo: "false" }%>
 <% else %>
 <% end %>
