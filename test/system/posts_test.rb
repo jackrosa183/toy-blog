@@ -17,7 +17,19 @@ class PostsTest < ApplicationSystemTestCase
     end
 
   end
- 
+
+  test "comment actions redirect to the current page" do 
+    # @post = posts(five)
+
+    visit "posts/?page=2"
+    fill_in "comment_content", with: "Cool post!", match: :first
+    click_on "Comment", match: :first 
+    assert_current_path "/posts/?page=2"
+
+    click_on "Delete Comment"
+    assert_current_path "/posts/?page=2"
+  end
+
   test "creating a new post" do
     travel_to Time.new(2022, 9, 14) do
       visit posts_path
