@@ -11,12 +11,18 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user_id = @user.id
-    @comment.post_id = @post.id
+    @comment.post_id = @post.id 
 
     if @comment.save
-      redirect_to posts_path, notice: "Comment successfully created"
+      redirect_to controller: 'posts', 
+                  action: 'index', 
+                  page: params[:page],  
+                  notice: "Comment successfully created"
     else 
-      redirect_to posts_path, alert: "Please enter content"
+      redirect_to controller: 'posts',
+                  action: 'index',
+                  page: params[:page],
+                  alert: "Please enter content"
     end
   end
 
@@ -28,11 +34,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    # debugger
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
 
     @comment.destroy
-    redirect_to posts_path, notice: "Comment was successfully destroyed"
+    redirect_to controller: 'posts',
+                action: 'index',
+                page: params[:page],
+                notice: "Comment was successfully destroyed"
 
   end
 

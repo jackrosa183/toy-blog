@@ -12,10 +12,12 @@
       <%= link_to "edit",
         edit_post_comment_path(comment, comment.post_id), 
         class: "btn-primary-smaller"%>
+
       <%= button_to "Delete", 
-          post_comment_path(comment.post.id, comment.id), 
+          post_comment_path(comment.post.id, comment.id, page: params[:page]), 
           method: :delete, 
-          class: "btn-danger-smaller" %>
+          class: "btn-danger-smaller",
+          data: { turbo_frame: "comment_" + comment.post.id.to_s } %>
     </div>
   <% else %>
   <% end %>
