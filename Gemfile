@@ -5,7 +5,9 @@ ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.0"
-
+gem "image_processing", ">= 1.2"
+gem "mini_magick", ">= 4.9.5", "< 5"
+gem "ruby-vips", ">= 2.0.17"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -29,6 +31,8 @@ gem "cssbundling-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+gem "file_validators"
 
 gem "simple_form", "~> 5.1.0"
 gem 'simple_form-tailwind'

@@ -10,6 +10,7 @@
         <%= render "/layouts/connect_twitter" %>
         <%= render "/layouts/connect_facebook" %>
         <%= button_to "Connect Linkedin", "/auth/linkedin", method: :post, class: "btn-primary-smaller", data: { turbo: "false" }, content_type: "x-www-form-urlencoded" %>
+        <%= button_to "My Profile", user_path(id: current_user.id), method: :get, class: "btn-primary-smaller" %>
       </div>
 
       <% if is_admin? %>

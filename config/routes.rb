@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
 
+  patch "/users/update_avatar", to: "users#update_avatar"
   get 'json_feed', to: "feed#json_feed"
   get 'rss_feed', to: "feed#rss", format: 'xml'
   get '/auth/twitter/callback', to: "omniauth_callbacks#twitter"
@@ -18,5 +19,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :tags, only: [:show, :create]
-  resources :users
+  resources :users do
+    get 'edit_avatar'
+  end
 end
