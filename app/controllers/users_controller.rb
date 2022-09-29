@@ -22,28 +22,21 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def update_avatar
-    debugger
-    current_user.avatar.attach(params[:user][:avatar])
-    puts current_user.avatar.attach(params[:user][:avatar])
-    redirect_to user_path(current_user.id)
-  end
-
   def show
   end
   
   def update
-    # debugger
+    @user = current_user
     current_user.avatar.attach(params[:user][:avatar])
     current_user.save
-    puts current_user.avatar.attach(params[:user][:avatar]) 
-    redirect_to user_path(@user.id)
-    # @user.update_column(:avatar, params[:avatar])
-    # if @user.update_column(:avatar, params[:avatar])
-    #   redirect_to user_path(@user.id), notice: "Avatar successfully updated"
-    # else
-    #   redirect_to user_path(@user.id), alert: @user.errors.full_messages
-    # end
+
+    if current_user.update(user_params)
+      sign_in(@user, bypass: true)
+      redirect_to user_path(current_user.id), notice: "Woohoo! new account changes"
+    else
+      redirect_to edit_user_avatar_path, alert: @user.error.full_messages
+    end
+      
   end
 
   def destroy

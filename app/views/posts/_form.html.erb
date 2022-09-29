@@ -24,7 +24,7 @@
   <% unless current_user.twitter_account.nil? or @post.published %>
     <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
   <% end %>
-
+  
   <%= f.input :publish_date, as: :date, required: true, html5: true, 
               input_html: { class: "w-96 p-2", min: Date.current } unless @post.published %>
   <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 

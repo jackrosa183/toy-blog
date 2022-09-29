@@ -23,6 +23,7 @@ default: &default
 
 development:
   <<: *default
+  # host: /tmp
   database: toy_blog_development
 
   # The specified database role being used to connect to postgres.

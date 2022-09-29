@@ -4,4 +4,4 @@
 <% else %>
   <%= image_tag "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg" %>
 <% end %>
-<%= link_to "Upload Custom Avatar", user_edit_avatar_path(@user.id), class: "btn-primary"%>
+<%= link_to "Upload Custom Avatar", edit_user_avatar_path(@user.id), class: "btn-primary"%>

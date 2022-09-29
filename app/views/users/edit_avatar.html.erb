@@ -7,8 +7,10 @@
   <% end %>
 
 
-  <%= form_for @user, :url => users_update_avatar_path do |f| %>
+  <%= simple_form_for @user do |f| %>
     <%= @user.avatar.attached? %>
+    <%= f.input :email %>
+    <%= f.input :password %>
     <%= f.file_field :avatar, accept: 'image/*' %>
     <%= f.submit "Upload Avatar", class: "btn-primary"%>
     <%= %>
