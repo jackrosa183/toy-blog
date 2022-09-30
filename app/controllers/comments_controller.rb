@@ -7,6 +7,12 @@ class CommentsController < ApplicationController
   end
   
   def create
+    if params[:page] == ""
+      page = 1
+    else
+      page = params[:page]
+    end
+
     @user = current_user
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
@@ -16,13 +22,11 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to controller: 'posts', 
                   action: 'index', 
-                  page: params[:page],  
-                  notice: "Comment successfully created"
+                  page: page
     else 
       redirect_to controller: 'posts',
                   action: 'index',
-                  page: params[:page],
-                  alert: "Please enter content"
+                  page: page
     end
   end
 
