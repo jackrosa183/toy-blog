@@ -1,0 +1,9 @@
+<main class="container ml-10">
+    <%= image_tag "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg",
+        class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
+
+  <%= simple_form_for @avatar do |f| %>
+    <%= f.file_field :image, accept: 'image/*' %>
+    <%= f.submit %>
+  <% end %>
+</main>
