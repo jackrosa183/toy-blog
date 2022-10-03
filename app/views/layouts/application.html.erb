@@ -3,6 +3,9 @@
     <head>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= link_to root_path do %>
+      <h1 class="text-5xl font-bold text-black ml-4 pt-4"> intense wave </h1>
+    <% end %>
     <%= render "layouts/navbar" %>
     </head>
     <body>

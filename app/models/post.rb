@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   validates :title, presence: true
-  validates :content, presence: true
+  # validates :content, presence: true
   validates :user, presence: true
   validates :publish_date, presence: true
   validates :post_tags, length: { maximum: 5, too_long: "5 tags is the maximum allowed" }
@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
-  
+  has_rich_text :rich_content 
   attr_accessor :extracted_tags
 
   def extracted_tags=(tag_titles)

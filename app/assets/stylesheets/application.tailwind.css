@@ -71,4 +71,4 @@
 }
 .pagination a:hover {
   @apply font-semibold text-gray-200 bg-gray-700;
-}
+}@import 'actiontext.css';
