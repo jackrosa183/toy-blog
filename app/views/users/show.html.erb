@@ -1,11 +1,11 @@
 <main class="container ml-4">
   <%= "hello " << @user.email %>
   <div class="p-5">
-    <% unless current_user.avatar.nil? %>
+    <% if has_user_image(current_user) %>
       <%= image_tag current_user.avatar.image.variant(resize_to_limit: [100, 100]),
           class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
     <% else %> 
-      <%= image_tag "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg" %>
+      <%= image_tag "blank_avatar.jpeg" %>
     <% end %>
   </div>
 

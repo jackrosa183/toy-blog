@@ -16,10 +16,9 @@ class AvatarsController < ApplicationController
   end
 
   def update
-    @avatar = Avatar.find(params[:id])
+    @avatar = Avatar.find_by(id: params[:id])
     @avatar.image.purge
     @avatar.image.attach(params[:avatar][:image])
-    # @avatar.image.attach
     redirect_to user_path(current_user.id)
   end
 
