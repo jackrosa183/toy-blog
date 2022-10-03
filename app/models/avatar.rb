@@ -3,6 +3,6 @@ class Avatar < ApplicationRecord
   belongs_to :user
 
 
-  validates :image, file_size: { less_than_or_equal_to: 5.megabytes },
+  validates :image, file_size: { less_than_or_equal_to: 1.megabyte },
                       file_content_type: { allow: /^image\/.*/ }
 end

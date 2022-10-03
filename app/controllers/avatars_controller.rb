@@ -16,6 +16,7 @@ class AvatarsController < ApplicationController
   end
 
   def update
+    debugger
     @avatar = Avatar.find_by(id: params[:id])
     @avatar.image.purge
     @avatar.image.attach(params[:avatar][:image])
