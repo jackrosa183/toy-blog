@@ -380,6 +380,9 @@ trix-editor .attachment__metadata {
     box-sizing: border-box;
     margin: 0;
     padding: 0; }
+  .trix-content a {
+    text-decoration: underline; 
+  }
   .trix-content h1 {
     font-size: 1.2em;
     line-height: 1.2; }

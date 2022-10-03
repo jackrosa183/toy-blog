@@ -1,6 +1,5 @@
-var canAdd = true 
 window.addEventListener("trix-file-accept", function(event) {
-  const acceptedTypes = ['image/jpeg', 'image/png', 'image/svg', 'image/gif']
+  const acceptedTypes = ['*/pdf', 'image/jpeg', 'image/png', 'image/svg', 'image/gif', 'image/HEIF']
   const maxFileSize = 1200 * 1200
   if (!acceptedTypes.includes(event.file.type)) {
     event.preventDefault()
@@ -10,9 +9,5 @@ window.addEventListener("trix-file-accept", function(event) {
     event.preventDefault()
     alert("Image attachment is too large")
   }
-  if(canAdd == false) {
-    event.preventDefault()
-    alert("Posts can only have one attachment")
-  }
-  canAdd = false
+  
 })
