@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def update
 
     if @post.published = true
-      edit_params = params.require(:post).permit(:title, :content, :user, extracted_tags: [])
+      edit_params = params.require(:post).permit(:title, :rich_content, :user, extracted_tags: [])
     else
       edit_params = post_params
     end

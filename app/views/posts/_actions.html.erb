@@ -1,7 +1,7 @@
 <div class="post_actions flex items-center">
   <% if (post.user == current_user) | current_user.admin %>
-    <%= link_to "Edit", edit_post_path(post), class: "btn-primary"%>
-    <%= button_to "Delete", post_path(post), method: :delete, class: "btn-danger" %>
+    <%= link_to "Edit", edit_post_path(post), class: "btn-primary", data: { turbo: false } %>
+    <%= button_to "Delete", post_path(post), method: :delete, class: "btn-danger", data: { turbo: false } %>
   <% else %>
   <% end %>
 </div>
