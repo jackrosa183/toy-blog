@@ -398,7 +398,6 @@ trix-editor .attachment__metadata {
     margin-right: 0.3em;
     padding-right: 0.6em; }
   .trix-content li {
-    list-style-type: circle;
     margin-left: 1em; }
   .trix-content [dir=rtl] li {
     margin-right: 1em; }

@@ -1,7 +1,6 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
   <%= f.input :title, required: true%>
-  <%= f.rich_text_area :rich_content, required: true, class:
-      "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+  <%= f.rich_text_area :rich_content, required: true %>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
     <div name="added tags" data-search-target="tags" class="p-2">
       <% @staged_tags.each do |t| %>
