@@ -19,6 +19,12 @@ class CommentsController < ApplicationController
     @comment.user_id = @user.id
     @comment.post_id = @post.id 
 
+    if params[:page] == ""
+      page = 1
+    else
+      page = params[:page]
+    end
+
     if @comment.save
       redirect_to controller: 'posts', 
                   action: 'index', 

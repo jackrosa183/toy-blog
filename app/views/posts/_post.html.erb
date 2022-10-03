@@ -1,13 +1,20 @@
 <main class="container ml-3 md-flex pt-2 pb-2 lg:scale-95 lg:hover:scale-100">
-  <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
+  <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 hover:shadow-2xl">
     <div class= "post p-2 ml-2">
       <%= link_to post_path(post) do %>
         <div class="post__title">
           <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
+            <% if has_user_image(post.user) %>
+              <%= image_tag post.user.avatar.image.variant(resize_to_limit: [100, 100]),
+                  class: "shadow rounded-full max-w-full h-auto align-middle border-none" %>
+            <% else %>
+              <%= image_tag 'blank_avatar.jpeg',
+                  class: "shadow rounded-full object-scale-down h-24 w-24 align-middle border-none"%>
+            <% end %>
             <% if post.publish_date > Date.current %>
               <%= post.title + " (Unpublished) until " + post.publish_date.to_s %>
             <% else %>
-              <%= post.title %>
+            <%= post.title %>
             <% end %>
           </h2>
         </div>

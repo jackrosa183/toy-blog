@@ -22,6 +22,17 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update_avatar
+    # debugger
+    current_user.save(validate: false)
+    current_user.avatar.attach(params[:avatar])
+    if current_user.avatar.attach(params[:avatar])
+      redirect_to user_path(current_user.id), notice: "New Avatar!"
+    else
+      redirect_to root_path, alert: current_user.errors.full_messages
+    end
+  end
+
   def show
   end
   

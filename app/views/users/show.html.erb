@@ -1,7 +1,17 @@
-<%= "hello " << @user.email %>
-<% if @user.avatar.attached? %>
-  <%= image_tag @user.avatar %>
-<% else %>
-  <%= image_tag "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg" %>
-<% end %>
-<%= link_to "Upload Custom Avatar", edit_user_avatar_path(@user.id), class: "btn-primary"%>
+<main class="container ml-4">
+  <%= "hello " << @user.email %>
+  <div class="p-5">
+    <% unless current_user.avatar.nil? %>
+      <%= image_tag current_user.avatar.image.variant(resize_to_limit: [100, 100]),
+          class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
+    <% else %> 
+      <%= image_tag "https://i.pinimg.com/222x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg" %>
+    <% end %>
+  </div>
+
+  <% if current_user.avatar.nil?%>
+    <%= link_to "Change Avatar", new_avatar_path, class: "btn-primary"%>
+  <% else %>
+    <%= link_to "Change Avatar", edit_avatar_path, class: "btn-primary" %>
+  <% end %>
+</main>

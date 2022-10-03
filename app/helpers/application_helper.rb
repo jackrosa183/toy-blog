@@ -6,4 +6,16 @@ module ApplicationHelper
       return false
     end
   end
+
+  def has_user_image(user)
+    if user.avatar.nil?
+      return false
+    else
+      if user.avatar.image.attached?
+        return true
+      else
+        return false
+      end
+    end
+  end
 end

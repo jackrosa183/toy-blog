@@ -6,13 +6,8 @@
         class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
   <% end %>
 
-
-  <%= simple_form_for @user do |f| %>
-    <%= @user.avatar.attached? %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.file_field :avatar, accept: 'image/*' %>
-    <%= f.submit "Upload Avatar", class: "btn-primary"%>
-    <%= %>
+  <%= form_with url: update_user_avatar_url, method: :post do |form| %>
+    <%= form.file_field :avatar, accept: 'image/*'%>
+    <%= form.submit %>
   <% end %>
 </main>
