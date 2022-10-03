@@ -2,42 +2,35 @@
 
 one:
   title: johns post
-  content: the first content
   user: john
   publish_date: <%= Date.current %>
 
 two:
   title: janes post
-  content: the second content
   user: jane
   publish_date: <%= 6.days.ago %>
 
 three:
   title: johns second post
-  content: old post
   user: john
   publish_date: <%= 7.days.ago %>
 
 four:
   title: janes second post
-  content: the fourth content
   user: jane
   publish_date: <%= DateTime.tomorrow %>
 
 five:
   title: futuristic post
-  content: the fifth content
   user: john
   publish_date: <%= DateTime.new(2022, 9, 15) %>
 
 six:
   title: the last post
-  content: greatest post
   user: john
   publish_date: <%= 7.days.ago %>
 
 seven:
   title: so advanced
-  content: so advanced
   user: john
   publish_date: <%= DateTime.tomorrow %>
