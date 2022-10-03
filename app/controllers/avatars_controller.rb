@@ -8,7 +8,11 @@ class AvatarsController < ApplicationController
     # current_user.avatar.image.purge
     @avatar = current_user.create_avatar(avatar_params)
     @avatar.image.attach(params[:avatar][:image])
-    redirect_to user_path(current_user.id)
+    if @avatar.save
+      redirect_to user_path(current_user.id), notice: "Avatar successfully created"
+    else
+      redirect_to user_path(current_user.id), alert: @avatar.errors.full_messages
+    end
   end
 
   def edit
@@ -16,11 +20,15 @@ class AvatarsController < ApplicationController
   end
 
   def update
-    @avatar = Avatar.find(params[:id])
+    @avatar = Avatar.find_by(id: params[:id])
     @avatar.image.purge
     @avatar.image.attach(params[:avatar][:image])
-    # @avatar.image.attach
-    redirect_to user_path(current_user.id)
+    if @avatar.save
+      redirect_to user_path(current_user.id), notice: "Avatar successfully changed"
+    else
+      redirect_to user_path(current_user.id), alert: @avatar.errors.full_messages
+    end
+      
   end
 
   def destroy
