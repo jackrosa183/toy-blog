@@ -6,10 +6,10 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full
+    @apply bg-blue-500 hover:bg-blue-700 text-white sm:text-sm md:text-base lg:text-xl font-bold py-2 px-4 rounded-full
   }
   .btn-secondary {
-    @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full
+    @apply bg-gray-500 hover:bg-gray-700 text-white sm:text-sm md:text-base lg:text-xl font-bold py-2 px-4 rounded-full
   }
   .btn-secondary-smaller {
     @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded-full
@@ -18,16 +18,16 @@
     @apply bg-blue-500 hover:bg-blue-700 text-white text-sm font-normal py-1 px-2 rounded-full
   }
   .btn-danger {
-    @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full
+    @apply bg-red-500 hover:bg-red-700 text-white sm:text-sm md:text-base lg:text-xl font-bold py-2 px-4 rounded-full
   }
   .btn-danger-smaller {
     @apply bg-red-500 hover:bg-red-700 text-white text-sm font-normal py-1 px-2 rounded-full
   }
   .btn-secondary {
-    @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full 
+    @apply bg-gray-500 hover:bg-gray-700 text-white sm:text-sm md:text-base lg:text-xl font-bold py-2 px-4 rounded-full 
   }
   .btn-hover-delete {
-    @apply bg-gray-500 hover:bg-red-500 text-white font-bold py-1 px-2 rounded-full p-10
+    @apply bg-gray-500 hover:bg-red-500 text-white sm:text-sm md:text-base lg:text-xl font-bold py-1 px-2 rounded-full p-10
   }
   .container {
     @apply ml-2
