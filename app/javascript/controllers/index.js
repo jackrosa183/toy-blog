@@ -12,3 +12,6 @@ application.register("form", FormController)
 
 import SearchController from "./search_controller"
 application.register("search", SearchController)
+
+import TrixController from "./trix_controller"
+application.register("trix", TrixController)
