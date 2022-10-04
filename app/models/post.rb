@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   include ActionText::Attachable
   validates :title, presence: true
-  # validates :content, presence: true
+  validates_presence_of :rich_content
   validates :user, presence: true
   validates :publish_date, presence: true
   validates :post_tags, length: { maximum: 5, too_long: "5 tags is the maximum allowed" }

@@ -1,7 +1,7 @@
 <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
   <%= f.input :title, required: true%>
   <div data-controller="trix" data-trix-id-value="<%=@post.id%>" data-trix-target="rtInput">
-    <%= f.rich_text_area :rich_content, required: true %>
+    <%= f.rich_text_area :rich_content, required: true, aria: { required: true } %>
   </div>
   <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
     <div name="added tags" data-search-target="tags" class="p-2">
