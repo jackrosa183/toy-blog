@@ -8,7 +8,7 @@ class CommentTest < ActiveSupport::TestCase
   test "Comment post validations" do
     
     @user = User.create(email: "eric@example.com", password: "passwword")
-    @post = Post.create(title: "Title", content: "Content", user: @user, publish_date: Date.current.yesterday)
+    @post = Post.create(title: "Title", rich_content: "Content", user: @user, publish_date: Date.current.yesterday)
     comment = Comment.create(content: "comments are cool")
     assert comment.invalid?
     assert comment.errors.where(:user_id, :blank).present?
