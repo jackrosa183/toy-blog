@@ -1,9 +1,9 @@
 <main class="container ml-8">
   <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
   <div class="post pt-4 pb-4 px-2">
-      <meta property="og:url"         content="#{request.original_url}" />
-      <meta property="og:type"        content="#{Blog Post}" />
-      <meta property="og:title"       content ="#{@post.title}" />
+      <meta property="og:url"         content="<%= request.original_url %>" />
+      <meta property="og:type"        content="Blog Post" />
+      <meta property="og:title"       content ="<%= @post.title %>" />
       <meta property="og:description" content="Read more on Jack's Blog" />
       <meta property="og:image"       content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
       
@@ -38,7 +38,7 @@
           }(document, 'script', 'facebook-jssdk'));</script>
 
           <div class="fb-share-button" 
-                data-href="<%= "request.original_url" %>" 
+                data-href="<%= request.original_url %>" 
                 data-layout="button_count">
           </div>
 
