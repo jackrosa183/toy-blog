@@ -10,4 +10,12 @@ class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
   include Devise::Test::IntegrationHelpers
   include Warden::Test::Helpers
+
+  def fill_in_trix_editor(id, with:)
+    find(:xpath, "//trix-editor[@input='#{id}']").click.set(with)
+  end
+  
+  def find_trix_editor(id)
+    find(:xpath, "//*[@id='#{id}']", visible: false)
+  end
 end

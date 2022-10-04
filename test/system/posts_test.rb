@@ -38,10 +38,8 @@ class PostsTest < ApplicationSystemTestCase
       click_on "Create Post"
 
       fill_in "Title", with: "Test Title"
-      fill_in "Content", with: "Test Content"
-
+      fill_in_trix_editor 'post_rich_content_trix_input_post', with: "Test Content"
       fill_in "post[publish_date]", with: "09142022"
-      fill_in "Search Tags", with: "yeet " 
       # sleep 100
       click_on "Create Post"
 
@@ -49,10 +47,9 @@ class PostsTest < ApplicationSystemTestCase
 
       assert_current_path posts_path
 
-      # assert_text "yeet"
       assert_text "2022-09-14"
       assert_selector "h2", text: "Test Title"
-      assert_selector "p", text: "Test Content"
+      assert_text "Test Content"
     end
   end
 
@@ -73,14 +70,14 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test "deleting a post" do
-    post = posts(:one)
     login_as users(:john)
     visit posts_path
-    assert_text post.content
+    post = Post.ordered.first
+    assert_text post.title
 
     click_on "Delete", match: :first
     assert_current_path posts_path
-    assert_no_text post.content
+    assert_no_text post.title
   end
 
   test "editing a post" do
@@ -89,11 +86,11 @@ class PostsTest < ApplicationSystemTestCase
     visit posts_path
     click_on "Edit", match: :first
     fill_in "Title", with: "yeet"
-    fill_in "Content", with: "yote"
+    fill_in_trix_editor 'post_rich_content_trix_input_post_' + Post.ordered.first.id.to_s, with: "yote"
 
     click_on "Update Post"
     assert_current_path posts_path
     assert_selector "h2", text: "yeet"
-    assert_selector "p", text: "yote"
+    assert_text "yote"
   end
 end
