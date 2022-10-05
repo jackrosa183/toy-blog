@@ -38,18 +38,17 @@ class PostsTest < ApplicationSystemTestCase
       click_on "Create Post"
 
       fill_in "Title", with: "Test Title"
+      click_on "Bold"
       fill_in_trix_editor 'post_rich_content_trix_input_post', with: "Test Content"
       fill_in "post[publish_date]", with: "09142022"
-      # sleep 100
       click_on "Create Post"
-
 
 
       assert_current_path posts_path
 
       assert_text "2022-09-14"
       assert_selector "h2", text: "Test Title"
-      assert_text "Test Content"
+      assert_selector "strong", text: "Test Content"
     end
   end
 
