@@ -56,12 +56,17 @@ export default class extends Controller {
       this.reset()
       return
     }
-    else{  
+    if(document.getElementsByClassName("tag px-0.5").length >= 5){  
+      this.reset()
+      alert("Posts may only have 5 tags!")
+      return 
+    } 
+    else {
       console.log("not here yet")
       const span = document.createElement("span")
       this.tagsTarget.append(span)
       span.append(element)
-      span.className = "px-0.5"
+      span.className = "tag px-0.5"
       const input = document.createElement("input")
       input.value = element.innerHTML
       input.name = "post[extracted_tags][]"
@@ -69,11 +74,13 @@ export default class extends Controller {
       input.id = "hidden" + element.innerHTML
       this.tagsTarget.after(input)
       this.reset() 
-      return 
-    } 
+      return
+
+    }
   }
   removeTag(e){
     console.log("removed " + e.target.innerHTML)
+    e.target.parentElement.remove()
     e.target.remove()
 
     const inputToRemove = document.getElementById("hidden" + e.target.innerHTML)

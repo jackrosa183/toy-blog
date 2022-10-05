@@ -41,6 +41,9 @@
 .navbar_users{
   padding: 10px;
 }
+body {
+  min-width: 1100px;
+}
 /* .new_user_button{
   padding: 15px;
 } */
