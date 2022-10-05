@@ -73,6 +73,13 @@
 .pagination a:hover {
   @apply font-semibold text-gray-200 bg-gray-700;
 }
+.previous_page.disabled {
+  background-color: rgb(223, 223, 223);
+}
+.next_page.disabled {
+  background-color: rgb(223, 223, 223); 
+}
+
 
 /* @charset "UTF-8";
 /*
