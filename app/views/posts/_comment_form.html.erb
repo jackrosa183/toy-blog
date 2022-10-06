@@ -6,7 +6,7 @@
   </div>
   <div class="pt-0.5 pb-0.5">
     <%= hidden_field_tag(:page, params[:page]) %>
-    <%= f.submit "Comment", class: "btn-primary", data: { turbo_frame: "post_" + post.id.to_s, 
+    <%= f.submit "Comment", class: "btn-primary", data: { turbo_frame: "post", 
                                                           disable_with: false }%>
   </div>
 <% end %>

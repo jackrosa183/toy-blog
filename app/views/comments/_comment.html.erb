@@ -8,14 +8,15 @@
   </p>
 
   <% if comment.user == current_user %>
-    <div class="flex items-center ml-2">
-      <%= button_to "Delete Comment", 
-          post_comment_path(comment.post.id, comment.id, page: params[:page]), 
-          method: :delete,
-          id: comment.id, 
-          class: "comment btn-danger-smaller",
-          data: { turbo_frame: "comment_" + comment.post.id.to_s } %>
-    </div>
-  <% else %>
+    <% if current_page?(post_path(comment.post.id))%>
+      <div class="flex items-center ml-2">
+        <%= button_to "Delete Comment", 
+            post_comment_path(comment.post.id, comment.id, page: params[:page]), 
+            method: :delete,
+            id: comment.id, 
+            class: "comment btn-danger-smaller",
+            data: { turbo_frame: "post" + comment.post.id.to_s } %>
+      </div>
+    <% end %>
   <% end %>
 </main>

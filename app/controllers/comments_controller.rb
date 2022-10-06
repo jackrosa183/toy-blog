@@ -27,12 +27,12 @@ class CommentsController < ApplicationController
 
     if @comment.save
       redirect_to controller: 'posts', 
-                  action: 'index', 
-                  page: page
+                  action: 'show', 
+                  id: @post.id
     else 
       redirect_to controller: 'posts',
-                  action: 'index',
-                  page: page
+                  action: 'show',
+                  id: @post.id 
     end
   end
 
@@ -50,8 +50,8 @@ class CommentsController < ApplicationController
 
     @comment.destroy
     redirect_to controller: 'posts',
-                action: 'index',
-                page: params[:page],
+                action: 'show',
+                id: @post.id,
                 notice: "Comment was successfully destroyed"
 
   end
