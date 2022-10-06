@@ -48,7 +48,30 @@
           </div>
           
           <%= render "posts/comment_form", post: @post %>
-          <div class="comments pt-4">
+          <script>
+            function hideComments() {
+              var comments = document.getElementById("comments_section")
+              console.log(comments.style.display)
+              if (comments.style.display == "none"){
+                comments.style.display = "block"
+              }
+              else {
+                comments.style.display = "none"
+              }
+            }
+          </script>
+
+          <h6 class="font-medium leading-tight text-base text-center text-blue-600">
+            <% if @post.comments.count > 0 %>
+              <%= "Comments: " + @post.comments.count.to_s %>
+              <button onclick="hideComments()" class="btn-secondary-smaller">
+                Hide
+              </button>
+            <% else %>
+              <%= "No comments yet" %>
+            <% end %>
+          </h6>
+          <div class="comments pt-4" id="comments_section">
             <%= render @post.comments %>
           <div>
         </div>

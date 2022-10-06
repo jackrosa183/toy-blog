@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-var canAttach = true
 var publicInput = ""
 export default class extends Controller {
   static targets = ["rtInput"]
