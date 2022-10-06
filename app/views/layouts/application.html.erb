@@ -1,17 +1,15 @@
 <!DOCTYPE html>
   <%= csrf_meta_tags %>
-  <html class= "bg-orange-100">
+  <html class="bg-orange-100">
     <head>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= link_to root_path do %>
-      <h1 class="text-5xl font-bold text-black ml-4 pt-4"> intense wave </h1>
-    <% end %>
-    <%= render "layouts/navbar" %>
+      <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+      <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+      <div class="sticky bg-black w-full z-50">
+        <%= render "layouts/navbar" %>
+      </div>
     </head>
-    <body>
-    </header>
 
+    <body>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
         <% flash.each do |type, msg| %>
