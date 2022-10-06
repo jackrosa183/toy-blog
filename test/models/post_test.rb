@@ -9,7 +9,7 @@ class PostTest < ActiveSupport::TestCase
   test "Posts are correctly published" do
     post_1 = Post.create(title: "published", rich_content: "published content", created_at: 5.minutes.ago, user: @user, publish_date: Date.current.tomorrow)
     post_2 = Post.create(title: "second title", rich_content: "first content", created_at: 5.minutes.ago, user: @user, publish_date: Date.current.tomorrow)
-    debugger
+    
     assert_not_equal @user.posts.published, [post_1, post_2]
   end
 
