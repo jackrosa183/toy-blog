@@ -48,11 +48,11 @@
           </div>
           
           <%= render "posts/comment_form", post: @post %>
+
           <script>
             function hideComments() {
               var comments = document.getElementById("comments_section")
               var hideButton = document.getElementById("hide")
-              console.log(comments.style.display)
               if (comments.style.display == "none"){
                 comments.style.display = "block"
                 hideButton.textContent = "Hide"
@@ -78,6 +78,7 @@
             <%= render @post.comments %>
           <div>
         </div>
+      </div>
     </div>
   <% end %>
 </main>
