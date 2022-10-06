@@ -12,6 +12,7 @@
   <%= will_paginate @posts %>
   </div>
 
+  <%= tag.p @posts.count.to_s + " Posts found", class: "text-center pt-4" %>
   <%= render @posts %>
 
   <%= will_paginate @posts %>
