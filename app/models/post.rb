@@ -24,5 +24,13 @@ class Post < ApplicationRecord
       # binding.pry
     end
   end
+
+  def preview
+    rich_content.to_plain_text.truncate_words(5, omission: "... (Read More)")
+  end
+
+  def has_image?
+    rich_content.embeds.count > 0
+  end
 end
 
