@@ -50,9 +50,17 @@ export default class extends Controller {
     this.checkExistence(a)
 
   }
+  
+  hasTag(element, tag) {
+    for (const child of element.children) {
+      if(child.textContent.toLowerCase() == tag.textContent.toLowerCase()){
+        return true
+      }
+    }
+  }
 
   checkExistence(element){
-    if(this.tagsTarget.textContent.toLowerCase().includes(element.innerHTML.toLowerCase())){
+    if(this.hasTag(this.tagsTarget, element)){
       this.reset()
       return
     }
