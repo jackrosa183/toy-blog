@@ -49,6 +49,11 @@
           
           <%= render "posts/comment_form", post: @post %>
 
+          <% @post.tags.each do |t|%>
+            <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full",
+                data: { turbo: false }%>
+          <% end %>
+
           <script>
             function hideComments() {
               var comments = document.getElementById("comments_section")

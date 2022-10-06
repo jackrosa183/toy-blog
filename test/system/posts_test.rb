@@ -51,7 +51,18 @@ class PostsTest < ApplicationSystemTestCase
       assert_selector "strong", text: "Test Content"
     end
   end
+  test "Post comments can be hidden" do
+    visit post_path(posts(:two))
+    comment_content = comments(:janes_comment).content
+    assert_text comment_content
 
+    click_on "Hide"
+    assert_no_text comment_content 
+
+    click_on "Show"
+    assert_text comment_content 
+
+  end
   test "posts publish on the correct day" do
     travel_to Time.new(2022, 9, 14) do
       login_as users(:john)
