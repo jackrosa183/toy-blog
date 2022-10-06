@@ -51,12 +51,15 @@
           <script>
             function hideComments() {
               var comments = document.getElementById("comments_section")
+              var hideButton = document.getElementById("hide")
               console.log(comments.style.display)
               if (comments.style.display == "none"){
                 comments.style.display = "block"
+                hideButton.textContent = "Hide"
               }
               else {
                 comments.style.display = "none"
+                hideButton.textContent = "Show"
               }
             }
           </script>
@@ -64,7 +67,7 @@
           <h6 class="font-medium leading-tight text-base text-center text-blue-600">
             <% if @post.comments.count > 0 %>
               <%= "Comments: " + @post.comments.count.to_s %>
-              <button onclick="hideComments()" class="btn-secondary-smaller">
+              <button onclick="hideComments()" class="btn-secondary-smaller" id="hide">
                 Hide
               </button>
             <% else %>
