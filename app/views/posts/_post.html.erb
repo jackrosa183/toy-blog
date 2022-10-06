@@ -14,7 +14,7 @@
               <% if post.publish_date > Date.current %>
                 <%= post.title + " (Unpublished) until " + post.publish_date.to_s %>
               <% else %>
-              <%= post.title %>
+                <%= post.title %>
               <% end %>
             </h2>
           </div>
