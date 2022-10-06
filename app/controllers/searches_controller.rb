@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
   end
 
   def find_posts
-    @posts = Post.containing(params[:query])
-    render json: @posts
+    @posts = Post.containing(params[:query]).paginate(page: params[:page], per_page: 3)
+    # render json: @posts
   end
 end
