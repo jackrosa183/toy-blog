@@ -32,6 +32,12 @@ class AvatarsController < ApplicationController
   end
 
   def destroy
+    @avatar = Avatar.find_by(id: params[:id])
+    if @avatar.destroy 
+      redirect_to user_path(current_user.id), notice: "Avatar removed"
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
   private
 

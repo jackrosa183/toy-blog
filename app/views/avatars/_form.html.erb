@@ -9,6 +9,9 @@
 <div data-controller="avatar">
   <%= simple_form_for @avatar do |f| %>
     <%= f.file_field :image, accept: 'image/*', data: { "avatar-target" => "fileField", action: "input->avatar#submit"} %>
-    <input type="submit" data-avatar-target="submit">
+    <input type="submit" data-avatar-target="submit" hidden>
+  <% end %>
+  <% unless current_user.avatar.nil?%>
+    <%= button_to "Remove Avatar", avatar_path(@avatar.id), method: :delete, class: "btn-danger-smaller" %>
   <% end %>
 </div>

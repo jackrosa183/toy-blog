@@ -1,43 +1,44 @@
-<%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
-  <%= f.input :title, required: true%>
-  <div data-controller="trix" data-trix-id-value="<%=@post.id%>" data-trix-target="rtInput">
-    <%= f.rich_text_area :rich_content, required: true, aria: { required: true } %>
-  </div>
-  <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
-    <div name="added tags" data-search-target="tags" class="p-2">
-      <% @staged_tags.each do |t| %>
-        <span class="px-0.5">
-          <a class="btn-hover-delete" data-action="click->search#removeTag"><%= t.title%></a>
-          <input type="hidden" name="post[extracted_tags][]" id="<%="hidden" + t.title%>" value="<%= t.title %>">
-        </span>
-      <% end unless @staged_tags.nil?%>
+<div class="pt-2">
+  <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
+    <%= f.input :title, required: true, placeholder: "Title", label: false%>
+    <div data-controller="trix" data-trix-id-value="<%=@post.id%>" data-trix-target="rtInput">
+      <%= f.rich_text_area :rich_content, required: true, aria: { required: true } %>
+    </div>
+    <div class="search" data-controller="search" data-search-url-value="<%= searches_url%>">
+      <div name="added tags" data-search-target="tags" class="p-2">
+        <% @staged_tags.each do |t| %>
+          <span class="px-0.5">
+            <a class="btn-hover-delete" data-action="click->search#removeTag"><%= t.title%></a>
+            <input type="hidden" name="post[extracted_tags][]" id="<%="hidden" + t.title%>" value="<%= t.title %>">
+          </span>
+        <% end unless @staged_tags.nil?%>
+      </div>
+
+      <input class="px-3 py-3 placeholder-slate-800 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-50" 
+            data-action="keyup->search#fetchResults" 
+            data-search-target="query" 
+            autofocus="autofocus" 
+            placeholder="Search Tags" 
+            type="text">
+
+      <div data-search-target="results"></div>
     </div>
 
-    <input class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 string optional" 
-          data-action="keyup->search#fetchResults" 
-          data-search-target="query" 
-          autofocus="autofocus" 
-          placeholder="Search Tags" 
-          type="text">
-
-    <div data-search-target="results"></div>
-  </div>
-
-  <% unless current_user.twitter_account.nil? or @post.published %>
-    <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
+    <% unless current_user.twitter_account.nil? or @post.published %>
+      <%= f.input :should_tweet, required: false, label: 'AutoTweet?' %>
+    <% end %>
+    
+    <%= f.input :publish_date, as: :date, required: true, html5: true, 
+                input_html: { class: "w-96 p-2", min: Date.current } unless @post.published %>
+    <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
+    <div class="pt-4 pb-2">
+        <%= f.button :submit %>
+    </div>
+      <div class="return_button pb-5 pt-2">
+          <%= link_to "Cancel", posts_path, class: "btn-danger" unless @editing %>
+      </div>
   <% end %>
-  
-  <%= f.input :publish_date, as: :date, required: true, html5: true, 
-              input_html: { class: "w-96 p-2", min: Date.current } unless @post.published %>
-  <%# <%= f.input :tag_ids, as: :select, collection: Tag.order(:title), label_method: :title %> 
-  <div class="pt-4 pb-2">
-      <%= f.button :submit %>
-  </div>
-    <div class="return_button pb-5 pt-2">
-        <%= link_to "Cancel", posts_path, class: "btn-danger" unless @editing %>
-    </div>
-<% end %>
-
+</div>
 
 
 
