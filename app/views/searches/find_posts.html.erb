@@ -1,7 +1,7 @@
 <main class="container pl-10">
   <%= will_paginate @posts %>
 
-  <%= tag.p @posts.count.to_s + " Posts found", class: "text-center pt-4" %>
+  <%= tag.p @posts.count.to_s + " Posts found", class: "text-center pt-4 text-slate-200" %>
   <%= render @posts %>
 
   <%= will_paginate @posts %>

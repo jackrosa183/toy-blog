@@ -8,11 +8,10 @@ class SearchesController < ApplicationController
 
   def find_posts
     @tag = Tag.find_by('Lower(title)= ?', params[:query].downcase)
-    if @tag.nil?
+    unless @tag.nil?
+      @posts = Post.tagged_with(@tag.title).or(Post.containing(params[:query])).paginate(page: params[:page], per_page: 3)
+    else
       @posts = Post.containing(params[:query]).paginate(page: params[:page], per_page: 3)
-    else 
-      @posts = Post.tagged_with(@tag.title).paginate(page: params[:page], per_page: 3)
     end
-    # render json: @posts
   end
 end

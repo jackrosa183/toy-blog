@@ -21,7 +21,7 @@
             <%= image_tag 'blank_avatar.jpeg',
               class: "shadow rounded-full object-scale-down h-24 w-24 align-middle border-none" %>
           <% end %>
-          <h1 class= "font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
+          <h1 class= "font-medium leading-tight text-4xl mt-0 mb-2 text-slate-300">
             <%= @post.title %>
           </h1>
           
@@ -69,7 +69,7 @@
             }
           </script>
 
-          <h6 class="font-medium leading-tight text-base text-center text-blue-600">
+          <h6 class="font-medium leading-tight text-base text-center text-slate-200">
             <% if @post.comments.count > 0 %>
               <%= "Comments: " + @post.comments.count.to_s %>
               <button onclick="hideComments()" class="btn-secondary-smaller" id="hide">
