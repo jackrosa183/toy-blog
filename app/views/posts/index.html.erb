@@ -1,15 +1,17 @@
 <main class="container pl-10 pt-4">
-  <div class="flex space-x-4 items-center justify-center h-100">
+  <div class="flex space-x-4 items-center justify-center">
     <%= turbo_frame_tag "turbo_new_post" do %>
-      <%= link_to "Create Post",
-                  new_post_path,
-                  class: "btn-primary",
-                  data: { turbo_frame: "turbo_new_post" } %>
-      <%= link_to "View drafts",
-                  "/index_drafts",
-                  class: "btn-primary",
-                  data: { turbo: false }%>
-      <%= will_paginate %>
+      <div class="text-center">
+        <%= link_to "Create Post",
+                    new_post_path,
+                    class: "btn-primary",
+                    data: { turbo_frame: "turbo_new_post" } %>
+        <%= link_to "View drafts",
+                    "/index_drafts",
+                    class: "btn-primary",
+                    data: { turbo:  false }%>
+        <%= will_paginate %>
+      </div>
     <% end %>
   </div>
   <%= render @posts.ordered.published %>
