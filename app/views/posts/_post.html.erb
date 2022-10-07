@@ -1,9 +1,9 @@
 <%= link_to post_path(post), data: { turbo: false} do %>
   <main class="container ml-3 md-flex pt-2 pb-2 lg:scale-95 lg:hover:scale-100">
-    <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 hover:shadow-2xl">
+    <div class="border-2 border-slate-500 border-opacity-75 rounded-3xl p-2 hover:shadow-2xl">
       <div class= "post p-2 ml-2">
           <div class="post__title">
-            <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-blue-600">
+            <h2 class="font-medium leading-tight text-slate-300 text-4xl mt-0 mb-2">
               <% if has_user_image(post.user) %>
                 <%= image_tag post.user.avatar.image.variant(resize_to_limit: [100, 100]),
                     class: "shadow rounded-full max-w-full h-auto align-middle border-none" %>
@@ -20,11 +20,11 @@
           </div>
         
         <div class="post__preview">
-          <%= tag.p post.preview, class: "text-2xl"%>
+          <%= tag.p post.preview, class: "text-2xl text-slate-100"%>
           <%= image_tag post.rich_content.embeds.first.variant(resize_to_limit: [200, 200]) if post.has_image?%>
         </div>
 
-        <p class="post_details italic text-xs flex-right inset-y-0 pt-10 pb-2">
+        <p class="post_details italic text-xs text-slate-200 flex-right inset-y-0 pt-10 pb-2">
           <%= "published " + post.publish_date.to_s %>
           <%= "by " + post.user.email.to_s%>
         </p>
@@ -32,11 +32,11 @@
         <%= render "posts/actions", post: post %>
         
         <% post.tags.each do |t|%>
-            <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full",
+            <%= link_to t.title, tag_path(t), class: "btn-secondary-smaller",
                 data: { turbo: false }%>
         <% end %>
 
-        <h6 class="font-medium leading-tight text-base text-center text-blue-600">
+        <h6 class="font-medium leading-tight text-slate-200 text-base text-center">
           <% if post.comments.count > 0 %>
             <%= "Comments: " + post.comments.count.to_s %>
           <% else %>

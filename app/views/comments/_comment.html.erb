@@ -1,9 +1,9 @@
-<main class="container border-2 lg:scale-95 lg:hover:scale-100">
-  <p class= "comment_content ml-2">
+<main class="container border-2 border-slate-500 lg:scale-95 lg:hover:scale-100 rounded-lg">
+  <p class= "comment_content ml-2 text-slate-200">
    <%= comment.content %> 
   </p>
   
-  <p class="comment__author italic text-xs ml-2 ">
+  <p class="comment__author italic text-xs ml-2 text-slate-300 ">
     <%= "by " + comment.user.email.to_s %>
   </p>
 
