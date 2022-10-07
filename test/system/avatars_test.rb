@@ -5,11 +5,10 @@ class AvatarsTest < ApplicationSystemTestCase
     login_as users(:john)
   end
 
-  test "User gets redirected when uploading too large of an image" do
+  test "User gets error when uploading too large of an image" do
     visit new_avatar_path
     attach_file "avatar_image", file_fixture("big_photo.jpeg")
-    click_on "Create Avatar"
-
+    
     assert_text "5 MB"
   end
 
@@ -18,7 +17,7 @@ class AvatarsTest < ApplicationSystemTestCase
 
     visit new_avatar_path
     attach_file "avatar_image", file_fixture("blank_avatar.jpeg")
-    click_on "Create Avatar"
+    click_on "Change Avatar"
 
     assert_no_text "5 MB" 
     assert_no_text "Warning"

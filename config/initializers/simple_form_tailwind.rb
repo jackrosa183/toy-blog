@@ -88,10 +88,10 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'text-sm font-medium text-slate-200 block', error_class: 'text-red-500'
-    b.use :input, class: 'w-full text-gray-500 px-3 py-2 border rounded', error_class: 'text-red-500 border-red-500', valid_class: 'text-green-400'
+    b.use :label, class: 'text-sm font-medium text-slate-200', error_class: 'text-red-500'
+    b.use :input, class: 'w-full text-slate-200', error_class: 'text-red-500 border-red-500', valid_class: 'text-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-slate-200 text-xs italic' }
   end
 
   # vertical multi select

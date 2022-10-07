@@ -19,19 +19,19 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test "comment actions redirect to the current page" do 
-    visit "posts/?page=2"
+    visit post_path(Post.published.last.id)
     
     fill_in "comment_content", with: "Cool post!", match: :first
     
     click_on "Comment", match: :first 
     
-    assert_current_path "/posts/?page=2"
+    assert_current_path post_path(Post.published.last.id)
     
     assert_text "Cool post!", maximum: 1
     
     click_on "Delete Comment"
     
-    assert_current_path "/posts/?page=2"
+    assert_current_path post_path(Post.published.last.id)
     
     assert_no_text "Cool post!"
   end
@@ -54,10 +54,9 @@ class PostsTest < ApplicationSystemTestCase
 
       assert_current_path posts_path
 
+      click_on "Test Content"
 
-      assert_text "2022-09-14"
-
-      assert_selector "h2", text: "Test Title"
+      assert_selector "h1", text: "Test Title"
 
       assert_selector "strong", text: "Test Content"
     end
