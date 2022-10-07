@@ -10,10 +10,10 @@
                     "/index_drafts",
                     class: "btn-primary",
                     data: { turbo:  false }%>
-        <%= will_paginate %>
       </div>
     <% end %>
   </div>
+    <%= will_paginate %>
   <%= render @posts.ordered.published %>
   <%= will_paginate %>
 
