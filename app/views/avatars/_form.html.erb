@@ -6,7 +6,9 @@
         class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
 <% end %>
 
-<%= simple_form_for @avatar do |f| %>
-  <%= f.file_field :image, accept: 'image/*' %>
-  <%= f.submit %>
-<% end %>
+<div data-controller="avatar">
+  <%= simple_form_for @avatar do |f| %>
+    <%= f.file_field :image, accept: 'image/*', data: { "avatar-target" => "fileField", action: "input->avatar#submit"} %>
+    <input type="submit" data-avatar-target="submit">
+  <% end %>
+</div>

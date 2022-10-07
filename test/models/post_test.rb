@@ -11,6 +11,9 @@ class PostTest < ActiveSupport::TestCase
     post_2 = Post.create(title: "second title", rich_content: "first content", created_at: 5.minutes.ago, user: @user, publish_date: Date.current.tomorrow)
     
     assert_not_equal @user.posts.published, [post_1, post_2]
+
+    post_1.update(publish_date: Date.current)
+    assert_equal @user.posts.published, [post_1]
   end
 
   test "Posts are in descending order" do
@@ -19,7 +22,7 @@ class PostTest < ActiveSupport::TestCase
     post_2 = Post.create(title: "second title", rich_content: "second title", created_at: 5.minutes.ago, user: @user, publish_date: Date.current.yesterday)
 
     assert_equal @user.posts.ordered, [post_1, post_2, post_3]
- end 
+  end 
 
  test "Posts have users validations" do
 
