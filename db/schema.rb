@@ -154,6 +154,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_154524) do
     t.integer "post_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_ids"], name: "index_viewed_posts_on_post_ids", unique: true
     t.index ["user_id"], name: "index_viewed_posts_on_user_id"
   end
 

@@ -1,0 +1,37 @@
+<script>
+  function hideComments() {
+    var comments = document.getElementById("comments_section")
+    var hideButton = document.getElementById("hide")
+    if (comments.style.display == "none"){
+      comments.style.display = "block"
+      hideButton.textContent = "Hide"
+    }
+    else {
+      comments.style.display = "none"
+      hideButton.textContent = "Show"
+    }
+  }
+  function loadMore(){
+    
+  }
+</script>
+
+<h6 class="font-medium leading-tight text-base text-center text-slate-200">
+  <% if @post.comments.count > 0 %>
+    <%= "Comments: " + @post.comments.count.to_s %>
+    <button onclick="hideComments()" class="btn-secondary-smaller" id="hide">
+      Hide
+    </button>
+  <% else %>
+    <%= "No comments yet" %>
+  <% end %>
+</h6>
+
+<div class="comments pt-4" id="comments_section">
+  <%= render @post.comments.last(3) %>
+  <div class="p-4 text-center">
+  <button onclick="loadMore()" class="btn-secondary-smaller" id="hide">
+      Show More
+  </button>
+  </div>
+<div>
