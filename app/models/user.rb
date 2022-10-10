@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_one :linkedin_account, dependent: :destroy
 
   has_one :avatar
+  has_one :viewed_post
   # validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
   #                   file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
 end

@@ -1,0 +1,3 @@
+class ViewedPost < ApplicationRecord
+  belongs_to :user
+end

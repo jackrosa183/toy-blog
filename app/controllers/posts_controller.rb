@@ -12,12 +12,13 @@ class PostsController < ApplicationController
   end
   
   def show
-    # debugger
-    if session[:viewed_posts].include?(@post.id)
+    viewed_posts = current_user.viewed_post.post_ids
+    if viewed_posts.include?(@post.id)
     else
       counter = @post.viewcount += 1
       @post.update_attribute "viewcount", counter
-      session[:viewed_posts] << @post.id
+      viewed_posts << @post.id
+      current_user.viewed_post.save
     end
   end
 
