@@ -13,10 +13,12 @@
       </div>
     <% end %>
   </div>
-    <%= will_paginate %>
-  <%= render @posts.ordered.published %>
-  <%= will_paginate %>
-
+  <div id="posts">
+    <%= render @posts %>
+  </div>
+  <div id="next_link">
+    <%= button_to "next", pagy_url_for(@pagy, @pagy.next), method: :post %>
+  </div>
   <div class="admin_message">
     <% if current_user.admin == true %>
       <p class="italic">Welcome admin</p>

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :searches, only: [:index]
   resources :posts do
+    collection do
+      post :index
+    end
     resources :comments
   end
   resources :tags, only: [:show, :create]

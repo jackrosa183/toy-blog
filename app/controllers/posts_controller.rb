@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_action :is_admin?, only: [:destroy]
 
   def index
-    @posts = Post.published.paginate(page: params[:page], per_page: 3)
+    @pagy, @posts = pagy_countless(Post.published, items: 2)
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def index_drafts

@@ -179,7 +179,7 @@ require 'pagy/extras/countless'
 
 # Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
 # See https://ddnexus.github.io/pagy/extras/support
-# require 'pagy/extras/support'
+require 'pagy/extras/support'
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim
