@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' } 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root to: "posts#index"
+  root to: redirect('/posts', status: 302)
   # Defines the root path route ("/")
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
