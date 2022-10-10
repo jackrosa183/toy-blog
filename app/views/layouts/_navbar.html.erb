@@ -19,6 +19,9 @@
             </svg>
           <% end %>
         <% end %>
+        <%= link_to featured_posts_path do %>
+         <%= render partial: "layouts/graph" %> 
+        <% end %>
       </div>
 
       <% if is_admin? %>

@@ -10,7 +10,8 @@ class Post < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   scope :published, -> { where('publish_date <= ?', Date.current).order(publish_date: :desc)}
   scope :tagged_with, ->(title) { joins(:tags).where(tags: {title: title}) }
-
+  scope :popularity, ->{ order(viewcount: :desc) }
+  
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy

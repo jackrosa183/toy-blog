@@ -8,17 +8,22 @@ class PostsController < ApplicationController
   end
 
   def index_drafts
-    @posts = Post.paginate(page: params[:page], per_page: 5)
+    @posts = Post.paginate(page: params[:page], per_page: 3)
   end
-  
+
+  def index_featured
+    @posts = Post.popularity.paginate(page: params[:page], per_page: 3)
+  end
+
   def show
-    viewed_posts = current_user.viewed_post.post_ids
-    if viewed_posts.include?(@post.id)
-    else
-      counter = @post.viewcount += 1
-      @post.update_attribute "viewcount", counter
-      viewed_posts << @post.id
-      current_user.viewed_post.save
+    unless current_user.viewed_post.nil?
+      viewed_posts = current_user.viewed_post.post_ids
+      unless viewed_posts.include?(@post.id)
+        counter = @post.viewcount += 1
+        @post.update_attribute "viewcount", counter
+        viewed_posts << @post.id
+        current_user.viewed_post.save
+      end
     end
   end
 
