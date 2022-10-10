@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :devise_controller?
-
+  include Pagy::Backend
+  
   def authenticate_user! 
     if user_signed_in?
       super

@@ -26,9 +26,10 @@
     <%= "No comments yet" %>
   <% end %>
 </h6>
-
+<% comments = @post.comments.paginate(page: params[:page], per_page: 3) %>
 <div class="comments pt-4" id="comments_section">
-  <%= render @post.comments.last(3) %>
+  <%= will_paginate comments %>
+  <%= render comments %>
   <div class="p-4 text-center">
   <button onclick="loadMore()" class="btn-secondary-smaller" id="hide">
       Show More

@@ -57,6 +57,7 @@ gem 'koala', '~> 3.2'
 
 gem "devise", "~> 4.8.1"
 gem "autoprefixer-rails"
+gem 'pagy', '~> 5.10'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
