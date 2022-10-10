@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def index_featured
     @posts = Post.popularity.paginate(page: params[:page], per_page: 3)
+    @posts = @posts[0..3]
   end
 
   def show

@@ -1,6 +1,27 @@
-<main class="container ml-2">
-  <h1 class="text-slate-200 text-xl">Popular Posts</h1>
-  <div class="justify-center">
-    <%= render @posts %>
+<main class="container pl-10 pt-4">
+  <div class="flex space-x-4 items-center justify-center">
+    <%= turbo_frame_tag "turbo_new_post" do %>
+      <div class="text-center">
+        <%= link_to "Create Post",
+                    new_post_path,
+                    class: "btn-primary",
+                    data: { turbo_frame: "turbo_new_post" } %>
+        <%= link_to "View drafts",
+                    "/index_drafts",
+                    class: "btn-primary",
+                    data: { turbo:  false }%>
+      </div>
+    <% end %>
+  </div>
+    <div class= "pt-3">
+      <h1 class="text-xl text-slate-200 text-center">Most Popular Posts</h1>
+    </div>
+  <%= render @posts %>
+
+  <div class="admin_message">
+    <% if current_user.admin == true %>
+      <p class="italic">Welcome admin</p>
+    <% else %>
+    <% end %>
   </div>
 </main>
