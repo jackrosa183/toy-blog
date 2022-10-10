@@ -26,7 +26,7 @@
 
         <p class="post_details italic text-xs text-slate-200 flex-right inset-y-0 pt-10 pb-2">
           <%= "published " + post.publish_date.to_s %>
-          <%= "by " + post.user.email.to_s%>
+          <%= "by " + post.user.email.to_s %>
         </p>
       
         <%= render "posts/actions", post: post %>

@@ -31,6 +31,6 @@ class Post < ApplicationRecord
 
   def has_image?
     rich_content.embeds.count > 0
-  end
+  end 
 end
 

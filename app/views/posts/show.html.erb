@@ -45,6 +45,7 @@
             <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
             <script type="IN/Share" data-url="<%= request.original_url %>"></script>
           </div>
+
           
           <%= render "posts/comment_form", post: @post %>
 
@@ -81,6 +82,7 @@
           <div class="comments pt-4" id="comments_section">
             <%= render @post.comments %>
           <div>
+          <%= tag.p @post.viewcount.to_s + " views", class: "text-slate-200" %>
         </div>
       </div>
     </div>
