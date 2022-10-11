@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   scope :containing, -> (query) { where(arel_table[:title].matches("%#{query}%")) }
   scope :ordered, -> { order(created_at: :desc) }
   scope :unpublished, -> { where('publish_date > ?', Date.current).order(publish_date: :desc) }
-  scope :published, -> { where('publish_date <= ?', Date.current).order(publish_date: :desc) }
+  scope :published, -> { where('publish_date <= ?', Date.current).order(publish_date: :desc).order(created_at: :desc) }
   scope :tagged_with, ->(title) { joins(:tags).where(tags: {title: title}) }
   scope :popularity, ->{ order(viewcount: :desc) }
   
