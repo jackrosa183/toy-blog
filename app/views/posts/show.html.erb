@@ -1,66 +1,62 @@
 <main class="container ml-8">
-  <script>
-
-  </script>
-  <%= turbo_frame_tag "post" do %>
-    <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
-      <div class="post pt-4 pb-4 px-2">
-        <meta property="og:url"         content="<%= request.original_url %>" />
-        <meta property="og:type"        content="Blog Post" />
-        <meta property="og:title"       content ="<%= @post.title %>" />
-        <meta property="og:description" content="Read more on Jack's Blog" />
-        <meta property="og:image"       content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
-        
-        <% url = request.original_url %>
-        <div class="return_button pt-1 pb-4">
-          <%= link_to "Return", posts_path, class: "btn-primary", data: { turbo: false } %>
-        </div>
-
-        <div class="pt-4">
-          <% if has_user_image(@post.user) %>
-            <%= image_tag @post.user.avatar.image.variant(resize_to_limit: [100, 100]), 
-                class: "shadow rounded-full max-w-full h-auto align-middle border-none" %>
-          <% else %>
-            <%= image_tag 'blank_avatar.jpeg',
-              class: "shadow rounded-full object-scale-down h-24 w-24 align-middle border-none" %>
-          <% end %>
-          <h1 class= "font-medium leading-tight text-4xl mt-0 mb-2 text-slate-300">
-            <%= @post.title %>
-          </h1>
-          
-          <%= @post.rich_content %>
-
-          <div class="Share buttons pt-4">
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-
-            <div class="fb-share-button" 
-                  data-href="<%= request.original_url %>" 
-                  data-layout="button_count">
-            </div>
-
-            <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-            <script type="IN/Share" data-url="<%= request.original_url %>"></script>
-          </div>
-          <%= render "actions", post: @post %>
-          <%= render "posts/comment_form", post: @post %>
-
-          <% @post.tags.each do |t|%>
-            <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full",
-                data: { turbo: false }%>
-          <% end %>
-
-          <%= tag.p @post.viewcount.to_s + " views", class: "text-slate-200" %>
-          <%= render partial: "comment_section" %>
-
-        </div>
+  <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
+    <div class="post pt-4 pb-4 px-2">
+      <meta property="og:url"         content="<%= request.original_url %>" />
+      <meta property="og:type"        content="Blog Post" />
+      <meta property="og:title"       content ="<%= @post.title %>" />
+      <meta property="og:description" content="Read more on Jack's Blog" />
+      <meta property="og:image"       content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+      
+      <% url = request.original_url %>
+      <div class="return_button pt-1 pb-4">
+        <%= link_to "Return", posts_path, class: "btn-primary", data: { turbo: false } %>
       </div>
+
+      <div class="pt-4">
+        <% if has_user_image(@post.user) %>
+          <%= image_tag @post.user.avatar.image.variant(resize_to_limit: [100, 100]), 
+              class: "shadow rounded-full max-w-full h-auto align-middle border-none" %>
+        <% else %>
+          <%= image_tag 'blank_avatar.jpeg',
+            class: "shadow rounded-full object-scale-down h-24 w-24 align-middle border-none" %>
+        <% end %>
+        <h1 class= "font-medium leading-tight text-4xl mt-0 mb-2 text-slate-300">
+          <%= @post.title %>
+        </h1>
+      </div>
+
+      <%= @post.rich_content %>
+
+      <div class="Share buttons pt-4">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+        <div class="fb-share-button" 
+              data-href="<%= request.original_url %>" 
+              data-layout="button_count">
+        </div>
+
+        <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+        <script type="IN/Share" data-url="<%= request.original_url %>"></script>
+      </div>
+      
+      <%= render "actions", post: @post %>
+
+      <% @post.tags.each do |t|%>
+        <%= link_to t.title, tag_path(t), class: "bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-1 px-2 rounded-full",
+            data: { turbo: false }%>
+      <% end %>
+      <%= turbo_frame_tag "post" do %>
+        <%= render "posts/comment_form", post: @post %>
+        <%= tag.p @post.viewcount.to_s + " views", class: "text-slate-200" %>
+        <%= render partial: "comment_section" %>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </main>
