@@ -4,6 +4,14 @@ class PostsController < ApplicationController
   before_action :is_admin?, only: [:destroy]
 
   def index
+    # @pagy, @posts = pagy_countless(Post.published, items: 2)
+    # @posts = Post.all
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def next_page
     @pagy, @posts = pagy_countless(Post.published, items: 2)
     respond_to do |format|
       format.html
@@ -38,7 +46,6 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
-    # @staged_tags = []
     tags = post_params[:extracted_tags]
     if @post.publish_date = DateTime.current
       @post.published = true

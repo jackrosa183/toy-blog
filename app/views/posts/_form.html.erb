@@ -1,5 +1,5 @@
 <div class="pt-2">
-  <%= simple_form_for @post, data: {turbo_frame: "_top"} do |f| %>
+  <%= simple_form_for @post, data: { turbo_frame: "_top" } do |f| %>
     <%= f.input :title, required: true, placeholder: "Title", label: false%>
     <div data-controller="trix" data-trix-id-value="<%=@post.id%>" data-trix-target="rtInput">
       <%= f.rich_text_area :rich_content, required: true, aria: { required: true } %>

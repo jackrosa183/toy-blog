@@ -1,11 +1,10 @@
 <main class= "container">
 
-  <div class="header">
+  <div class="header text-slate-200">
     <h1>Create New Post</h1>
   </div>
 
-  <%= turbo_frame_tag "turbo_new_post" do %>
-    <%= render "form" %>
-  <% end %>
+  <%= render "form" %>
+  
   
 </main> 

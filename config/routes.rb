@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback', to: "omniauth_callbacks#facebook"
   get '/auth/linkedin/callback/', to: "omniauth_callbacks#linkedin"
   get '/add_tag/:id', to: "tags#add", as: "add_tag"
-
+  
   resources :searches, only: [:index]
   resources :posts do
     collection do
-      post :index
+      get :next_page
     end
     resources :comments
   end
