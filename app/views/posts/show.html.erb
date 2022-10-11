@@ -1,6 +1,6 @@
 <main class="container ml-8">
   <script>
-    
+
   </script>
   <%= turbo_frame_tag "post" do %>
     <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
@@ -48,8 +48,7 @@
             <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
             <script type="IN/Share" data-url="<%= request.original_url %>"></script>
           </div>
-
-          
+          <%= render "actions", post: @post %>
           <%= render "posts/comment_form", post: @post %>
 
           <% @post.tags.each do |t|%>
