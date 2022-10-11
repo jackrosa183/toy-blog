@@ -1,4 +1,26 @@
 <main class="container ml-8">
+  <script>
+    const applyFormattingToPreBlocks = function () {
+      const preElements = document.querySelector('.trix-content').querySelectorAll('pre');
+      preElements.forEach(function(preElement) {
+        const regex = /(?!lang\-\\w\*)language-\w*\W*/gm;
+        const codeElement = document.createElement('code'); 
+        if (preElement.childNodes.length > 1) {
+          console.error('<pre> element contained nested inline elements (probably styling) and could not be processed. Please remove them and try again.')
+        }
+        let preElementTextNode = preElement.removeChild(preElement.firstChild);
+        let language = preElementTextNode.textContent.match(regex);
+        if (language) {
+          language = language[0].toString().trim();
+          preElementTextNode.textContent = preElementTextNode.textContent.replace(language, '');
+          codeElement.classList.add(language);
+        }
+        codeElement.append(preElementTextNode)
+        preElement.append(codeElement)
+      })
+    };
+    window.addEventListener("DOMContentLoaded", applyFormattingToPreBlocks)
+  </script>
   <%= turbo_frame_tag "post" do %>
     <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
       <div class="post pt-4 pb-4 px-2">
