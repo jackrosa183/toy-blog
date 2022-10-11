@@ -2,8 +2,8 @@
   <%= render @posts %>
 <% end %>
 
-<%= turbo_stream.update "next_link" do %>
-  <% if @pagy.next.present? %>
-    <%= button_to "next", pagy_url_for(@pagy, @pagy.next) %>
+<% if @pagy.next.present? %>
+  <%= turbo_stream.replace "pagination" do %>
+    <%= turbo_frame_tag "pagonation", src: posts_path(page: @pagy.next, format: :turbo_stream), loading: :lazy %>
   <% end %>
 <% end %>

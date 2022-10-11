@@ -16,9 +16,7 @@
   <div id="posts">
     <%= render @posts %>
   </div>
-  <div id="next_link">
-    <%= button_to "next", pagy_url_for(@pagy, @pagy.next), method: :post %>
-  </div>
+  <%= turbo_frame_tag "pagination", src: posts_path(format: :turbo_stream), loading: :lazy %>
   <div class="admin_message">
     <% if current_user.admin == true %>
       <p class="italic">Welcome admin</p>
