@@ -1,5 +1,5 @@
 <main class="container ml-8">
-  <div class="border-2 border-blue-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
+  <div class="border-2 border-slate-500 border-opacity-75 rounded-3xl p-2 shadow-2xl">
     <div class="post pt-4 pb-4 px-2">
       <meta property="og:url"         content="<%= request.original_url %>" />
       <meta property="og:type"        content="Blog Post" />
@@ -45,7 +45,7 @@
         <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
         <script type="IN/Share" data-url="<%= request.original_url %>"></script>
       </div>
-      
+
       <%= render "actions", post: @post %>
 
       <% @post.tags.each do |t|%>
