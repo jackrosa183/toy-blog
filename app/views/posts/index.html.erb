@@ -14,7 +14,6 @@
     <% end %>
   </div>
   <div id="posts">
-    <%= render @posts %>
   </div>
   <%= turbo_frame_tag "pagination", src: posts_path(format: :turbo_stream), loading: :lazy %>
   <div class="admin_message">

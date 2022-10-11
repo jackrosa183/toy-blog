@@ -58,8 +58,7 @@ class PostsController < ApplicationController
     end
     
     @editing = true
-    @post.tags = []
-    # debugger 
+    @post.tags = [] 
   end
 
   def update
