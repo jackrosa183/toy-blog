@@ -116,7 +116,6 @@ class PostsTest < ApplicationSystemTestCase
     login_as users(:john)
 
     visit posts_path
-    
     click_on "Edit", match: :first
     
     fill_in "Title", with: "yeet"
@@ -124,10 +123,8 @@ class PostsTest < ApplicationSystemTestCase
     fill_in_trix_editor 'post_rich_content_trix_input_post_' + Post.ordered.first.id.to_s, with: "yote"
 
     click_on "Update Post"
-
     assert_current_path posts_path
-
-    assert_selector "h2", text: "yeet"
+    assert_text "yeet"
 
     assert_text "yote"
   end

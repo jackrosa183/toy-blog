@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   # validates :tags, length: { maximum: 5 }
   scope :containing, -> (query) { where(arel_table[:title].matches("%#{query}%")) }
   scope :ordered, -> { order(created_at: :desc) }
-  scope :published, -> { where(published: true).order(created_at: :desc)}
+  scope :published, -> { where('publish_date <= ?', Date.current).order(publish_date: :desc)}
   scope :tagged_with, ->(title) { joins(:tags).where(tags: {title: title}) }
   scope :popularity, ->{ order(viewcount: :desc) }
   

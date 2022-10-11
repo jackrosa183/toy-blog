@@ -26,11 +26,11 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector "p", text: "newuser@example.com"
   end
 
-  test "regular user cannot access users" do 
+  test "regular user redirect after cannot access users" do 
     login_as users(:john)
     visit users_path
 
-    assert_current_path root_path
+    assert_current_path posts_path
   end
 
 end
