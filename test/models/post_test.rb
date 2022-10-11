@@ -24,36 +24,42 @@ class PostTest < ActiveSupport::TestCase
     assert_equal @user.posts.ordered, [post_1, post_2, post_3]
   end 
 
- test "Posts have users validations" do
+  test "Posts have users validations" do
 
-  post_1 = Post.new(title: "third title", rich_content: "third content", created_at: 3.minutes.ago)
-  assert post_1.invalid?
+    post_1 = Post.new(title: "third title", rich_content: "third content", created_at: 3.minutes.ago)
+    assert post_1.invalid?
 
-  assert post_1.errors.where(:user, :blank).present? 
+    assert post_1.errors.where(:user, :blank).present? 
 
-  post_1 = Post.new(title: "third title", rich_content: "third content", created_at: 3.minutes.ago, user: @user, publish_date: Date.current.yesterday)
-  assert post_1.valid?
-  assert_not post_1.errors.where(:user, :blank).present? 
- end
+    post_1 = Post.new(title: "third title", rich_content: "third content", created_at: 3.minutes.ago, user: @user, publish_date: Date.current.yesterday)
+    assert post_1.valid?
+    assert_not post_1.errors.where(:user, :blank).present? 
+  end
 
- test "Posts have title validations" do
-  post_1 = Post.new(created_at: 3.minutes.ago, user: @user) 
-  assert post_1.invalid?
+  test "Posts have title validations" do
+    post_1 = Post.new(created_at: 3.minutes.ago, user: @user) 
+    assert post_1.invalid?
 
-  assert post_1.errors.where(:title, :blank).present?
- end
+    assert post_1.errors.where(:title, :blank).present?
+  end
 
- test "Posts have content validations" do
-  post_1 = Post.new(title: "third title", created_at: 3.minutes.ago, user: @user)
-  assert post_1.invalid?
-  assert post_1.errors.where(:rich_content, :blank).present?
- end
+  test "Posts have content validations" do
+    post_1 = Post.new(title: "third title", created_at: 3.minutes.ago, user: @user)
+    assert post_1.invalid?
+    assert post_1.errors.where(:rich_content, :blank).present?
+  end
 
- test "Post gets correct extracted tags" do
-  post_1 = posts(:one)
-  post_1.extracted_tags = ["ruby", "rails"]
-  puts post_1.tags.map(&:title)
+  test "Post gets correct extracted tags" do
+    post_1 = posts(:one)
+    post_1.extracted_tags = ["ruby", "rails"]
+    puts post_1.tags.map(&:title)
 
-  assert_equal 2, post_1.reload.tags.count
- end
+    assert_equal 2, post_1.reload.tags.count
+  end
+
+  test "Posts are ranked by popularity" do
+    posts(:one).viewcount = Post.popularity.first.viewcount + 1000
+    posts(:one).save
+    assert Post.popularity.first, posts(:one)
+  end
 end

@@ -11,11 +11,5 @@
   </div>
   <div id="posts">
   </div>
-  <%= turbo_frame_tag "pagination", src: next_page_posts_path(format: :turbo_stream), loading: :lazy %>
-  <div class="admin_message">
-    <% if current_user.admin == true %>
-      <p class="italic">Welcome admin</p>
-    <% else %>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag "pagination", src: next_page_posts_path(format: :turbo_stream), loading: :lazy %> 
 </main> 

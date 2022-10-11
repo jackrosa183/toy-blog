@@ -17,11 +17,4 @@
       <h1 class="text-xl text-slate-200 text-center">Most Popular Posts</h1>
     </div>
   <%= render @posts %>
-
-  <div class="admin_message">
-    <% if current_user.admin == true %>
-      <p class="italic">Welcome admin</p>
-    <% else %>
-    <% end %>
-  </div>
 </main>
