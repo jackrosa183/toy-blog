@@ -28,11 +28,8 @@
 </h6>
 <% comments = @post.comments.paginate(page: params[:page], per_page: 3) %>
 <div class="comments pt-4" id="comments_section">
-  <%= will_paginate comments %>
-  <%= render comments %>
-  <div class="p-4 text-center">
-  <button onclick="loadMore()" class="btn-secondary-smaller" id="hide">
-      Show More
-  </button>
-  </div>
+  <%= turbo_frame_tag "comments" do %>
+    <%= will_paginate comments %>
+    <%= render comments %>
+  <% end %>
 <div>
