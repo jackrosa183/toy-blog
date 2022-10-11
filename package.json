@@ -41,6 +41,7 @@
     "function-bind": "^1.1.1",
     "glob-parent": "^5.1.2",
     "has": "^1.0.3",
+    "highlight.js": "^11.6.0",
     "immutable": "^4.1.0",
     "is-binary-path": "^2.1.0",
     "is-core-module": "^2.10.0",
