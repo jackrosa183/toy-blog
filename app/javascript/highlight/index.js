@@ -4,6 +4,6 @@ import 'highlight.js/styles/monokai.css'
 hljs.configure({languages: ['ruby', 'javascript', 'bash', 'html', 'elixir', 'css'] })
 document.addEventListener("turbo:load", (event) => {
   document.querySelectorAll('pre').forEach((block) => {
-    hljs.highlightBlock(block)
+    hljs.highlightElement(block)
   })
 })
