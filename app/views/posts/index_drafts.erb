@@ -1,6 +1,5 @@
-<% posts = current_user.posts.where("publish_date > ?", Date.current) %>
-<% unless posts.count < 1 %>
-  <%= render current_user.posts.where("publish_date > ?", Date.current) %>
+<% if @posts.count > 0 %>
+  <%= render current_user.posts.unpublished %>
 <% else%>
   <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-slate-200 pt-10 ml-6">
     You do not have any pending drafts

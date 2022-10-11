@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def index_drafts
-    @posts = Post.paginate(page: params[:page], per_page: 3)
+    @posts = Post.unpublished
   end
 
   def index_featured
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     tags = post_params[:extracted_tags]
-    if @post.publish_date = DateTime.current
+    if @post.publish_date == DateTime.current
       @post.published = true
     else
     end
