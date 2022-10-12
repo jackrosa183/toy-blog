@@ -1,11 +1,13 @@
-<% if @posts.count > 0 %>
-  <%= render current_user.posts.unpublished %>
-<% else%>
-  <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-slate-200 pt-10 ml-6">
-    You do not have any pending drafts
-  </h6>
-<% end %>
-<div class="return_button p-2 mb-2 ml-6 pt-8">
-  <%= link_to sanitize('Back'), posts_path, class: "btn-primary" %>
-</div>
+<main class="container mx-auto">
+  <% if @posts.count > 0 %>
+    <%= render current_user.posts.unpublished %>
+  <% else%>
+    <h6 class="font-medium leading-tight text-base mt-0 mb-2 text-slate-200 pt-10 ml-6">
+      You do not have any pending drafts
+    </h6>
+  <% end %>
+  <div class="return_button p-2 mb-2 ml-6 pt-8">
+    <%= link_to sanitize('Back'), posts_path, class: "btn-primary" %>
+  </div>
+</main>
 
