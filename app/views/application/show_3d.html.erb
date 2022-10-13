@@ -1,0 +1,31 @@
+<main class="container mx-auto">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+      var scene = new THREE.Scene();
+      const WIDTH = 500;
+      const HEIGHT = 500;
+      var camera = new THREE.PerspectiveCamera( 75, WIDTH/HEIGHT, 0.1, 1000 );
+      camera.position.z = 4;
+      var renderer = new THREE.WebGLRenderer({antialias:true});
+
+      renderer.setClearColor("#000000");
+      renderer.setSize( 1000, 1000 );
+      document.body.appendChild( renderer.domElement );
+
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+      var cube = new THREE.Mesh( geometry, material );
+
+      scene.add( cube );
+
+      var render = function () {
+          requestAnimationFrame( render );
+
+          cube.rotation.y += 0.01;
+
+          renderer.render(scene, camera);
+      };
+
+      render();
+  </script>
+</main>

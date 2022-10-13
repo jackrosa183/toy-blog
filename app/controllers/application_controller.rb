@@ -19,4 +19,6 @@ class ApplicationController < ActionController::Base
     else
     end
   end
+  def show_3d
+  end
 end
