@@ -128,4 +128,11 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_text "yote"
   end
+
+  test "Posts paginate via turbo stream" do
+    visit posts_path
+    assert_selector('div.post__preview', count: 2)
+    scroll_to(100, 500)
+    assert_selector('div.post__preview', count: 4)
+  end
 end
