@@ -1,4 +1,4 @@
-<main class="container mx-auto">
+<main class="container mx-auto" id="canvas_area">
   <div class="text-center p-5 ">
     <%= link_to "Helmet", 'show_3d?type=helmet', data: {turbo: false}, class: "btn-primary" %>
     <%= link_to "Ducky", 'show_3d?type=duck', data: {turbo: false}, class: "btn-primary" %>
@@ -25,7 +25,7 @@
 
     var renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( window.innerWidth * 0.8, window.innerHeight * 0.8);
     // renderer.setClearColor( backgroundColor );
 
     renderer.toneMapping = THREE.LinearToneMapping;
@@ -36,10 +36,10 @@
     window.addEventListener( 'resize', function () {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize( window.innerWidth, window.innerHeight );
+      renderer.setSize( window.innerWidth, window.innerHeight);
     }, false );
 
-    document.body.appendChild( renderer.domElement);
+    document.getElementById("canvas_area").appendChild( renderer.domElement);
 
     function renderScene(){ renderer.render( scene, camera ); }
     renderCalls.push(renderScene);
