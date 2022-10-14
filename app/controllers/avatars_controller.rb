@@ -1,11 +1,11 @@
 class AvatarsController < ApplicationController
+  before_action :set_avatar, only: [:update, :destroy]
+
   def new
     @avatar = Avatar.new
   end
 
   def create
-    # current_user.avatar.destroy
-    # current_user.avatar.image.purge
     @avatar = current_user.create_avatar(avatar_params)
     @avatar.image.attach(params[:avatar][:image])
     if @avatar.save
@@ -20,7 +20,6 @@ class AvatarsController < ApplicationController
   end
 
   def update
-    @avatar = Avatar.find_by(id: params[:id])
     @avatar.image.purge
     @avatar.image.attach(params[:avatar][:image])
     if @avatar.save
@@ -32,7 +31,6 @@ class AvatarsController < ApplicationController
   end
 
   def destroy
-    @avatar = Avatar.find_by(id: params[:id])
     if @avatar.destroy 
       redirect_to user_path(current_user.id), notice: "Avatar removed"
     else
@@ -40,6 +38,10 @@ class AvatarsController < ApplicationController
     end
   end
   private
+
+  def set_avatar
+    @avatar = Avatar.find_by(id: params[:id])
+  end
 
   def avatar_params 
     params.require(:avatar).permit(:image, :user)
