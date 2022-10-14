@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: redirect('/posts', status: 302)
   # Defines the root path route ("/")
-  get '/duck', to: 'application#duck', as: 'duck'
+  get '/model/:type', to: 'threed#model', as: 'model'
   get '/index_drafts', to: "posts#index_drafts"
   get '/index_tags', to: "posts#index_tags"
   get '/find_posts/', to: "searches#find_posts", as: "find_posts"

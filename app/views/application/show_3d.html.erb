@@ -69,7 +69,10 @@
     // 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/ladybug.gltf' 
     var loader = new THREE.GLTFLoader();
     loader.crossOrigin = true;
-    loader.load( 'duck', function ( data ) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var modelPath = 'model/' + urlParams.get('type').toString()
+    loader.load( modelPath, function ( data ) {
 
       
         var object = data.scene;
