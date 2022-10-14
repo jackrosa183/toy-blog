@@ -1,4 +1,8 @@
 <main class="container mx-auto">
+  <div class="text-center p-5 ">
+    <%= link_to "Helmet", 'show_3d?type=helmet', data: {turbo: false}, class: "btn-primary" %>
+    <%= link_to "Ducky", 'show_3d?type=duck', data: {turbo: false}, class: "btn-primary" %>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
   <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
