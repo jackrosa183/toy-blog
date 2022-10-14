@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
   end
   def show_3d
   end
+  def duck
+    duck = File.read("app/assets/3d/duck.gltf")
+    render json: duck
+  end
 end
