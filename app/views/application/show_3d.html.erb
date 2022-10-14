@@ -8,7 +8,8 @@
   <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
   <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
   <script>
-    const backgroundColor = 0x89CFF0;
+
+    // const backgroundColor = 0x89CFF0;
 
     var renderCalls = [];
     function render () {
@@ -25,7 +26,7 @@
     var renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.setClearColor( backgroundColor );//0x );
+    // renderer.setClearColor( backgroundColor );
 
     renderer.toneMapping = THREE.LinearToneMapping;
     renderer.toneMappingExposure = Math.pow( 0.94, 5.0 );
@@ -63,11 +64,11 @@
 
 
     var light = new THREE.PointLight( 0xffffcc, 20, 50 );
-    light.position.set( 4, 30, -20 );
+    light.position.set( 10, 30, -20 );
     scene.add( light );
 
-    var light2 = new THREE.AmbientLight( 0x20202A, 10, 10 );
-    light2.position.set( 30, -10, 30 );
+    var light2 = new THREE.AmbientLight( 0x20202A, 10, 15 );
+    light2.position.set( 10, -10, 30 );
     scene.add( light2 );
 
     // 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/39255/ladybug.gltf' 
@@ -80,7 +81,8 @@
 
       
         var object = data.scene;
-        object.position.set(0, -10, -0.75);
+        object.position.set(0, 0, 0);
+        object.rotation.set(0,90, 0)
         object.scale.set(10, 10, 10)
         scene.add( object );
 
