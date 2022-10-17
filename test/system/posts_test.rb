@@ -105,7 +105,9 @@ class PostsTest < ApplicationSystemTestCase
     
     assert_text post.title
 
-    click_on "Delete", match: :first
+    accept_confirm do      
+      click_on "Delete", match: :first
+    end
     
     assert_current_path posts_path
     
