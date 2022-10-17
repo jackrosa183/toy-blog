@@ -137,4 +137,17 @@ class PostsTest < ApplicationSystemTestCase
     scroll_to(100, 500)
     assert_selector('div.post__preview', count: 4)
   end
+
+  test "Featured posts are correctly ranked" do
+    expected_ranking = [posts(:six).title, posts(:one).title, posts(:two).title]
+    visit featured_posts_path
+
+    page_ranking = page.all(:css, 'h2')
+    page_ranking_titles = page_ranking.map {|element| element.text}
+
+    assert_not_equal expected_ranking, page_ranking_titles.shuffle
+
+    assert_equal expected_ranking, page_ranking_titles
+  end
+
 end

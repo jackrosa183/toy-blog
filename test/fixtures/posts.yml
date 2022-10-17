@@ -4,11 +4,13 @@ one:
   title: johns post
   user: john
   publish_date: <%= Date.current %>
+  viewcount: 1000
 
 two:
   title: janes post
   user: jane
   publish_date: <%= 6.days.ago %>
+  viewcount: 200
 
 three:
   title: johns second post
@@ -29,6 +31,7 @@ six:
   title: the last post
   user: john
   publish_date: <%= 7.days.ago %>
+  viewcount: 5000
 
 seven:
   title: so advanced
