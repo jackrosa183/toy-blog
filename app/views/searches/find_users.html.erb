@@ -1,0 +1,9 @@
+<main class="container mx-auto">
+  <%= will_paginate @users %>
+
+  <%= tag.p @users.count.to_s + " Users found", class: "text-center pt-4 text-slate-200" %>
+  <%= render @users %>
+
+  <%= will_paginate @users %>
+
+</main> 

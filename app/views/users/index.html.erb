@@ -1,3 +1,13 @@
-<%= render @users %>
+<main class="container mx-auto">
+  <%= form_with url: find_users_path, method: :get do |f|%>
+    <%= f.text_field :query, placeholder: "Search Users", required: false,
+                    class: "px-3 py-3 placeholder-slate-800 text-slate-600 relative bg-slate-200 rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-25" %>
+    <%= button_tag(class: "btn-primary-smaller", data: {turbo: false}) do %>
+      Search
+    <% end %>
+  <% end %>
+  <%= will_paginate @users %>
+  <%= render @users %>
 
-<%= button_to "Create New User", new_user_path, method: :get, class: "bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-8 rounded-full p-15" %>
+  <%= button_to "Create New User", new_user_path, method: :get, class: "bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-8 rounded-full p-15" %>
+</main>

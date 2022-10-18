@@ -14,4 +14,8 @@ class SearchesController < ApplicationController
       @posts = Post.containing(params[:query]).paginate(page: params[:page], per_page: 3)
     end
   end
+
+  def find_users
+    @users = User.where(User.arel_table[:email].matches("%#{params[:query]}%")).paginate(page: params[:page], per_page: 3)
+  end
 end
