@@ -1,18 +1,23 @@
-<main class="container ml-4">
-  <%= "hello " << @user.email %>
-  <div class="p-5">
+<main class="container mx-auto w-48">
+  <%= tag.p(class: "text-slate-200") do %>
+    <%= "hello" + @user.email %>
+  <% end %>
+  
+  <div class="p-2">
     <% if has_user_image(current_user) %>
       <%= image_tag current_user.avatar.image.variant(resize_to_limit: [100, 100]),
-          class: "shadow rounded-full max-w-full h-auto align-middle border-none"%>
+          class: "shadow rounded-full max-w-full h-auto border-none"%>
     <% else %> 
       <%= image_tag "blank_avatar.jpeg",
-          class: "shadow rounded-full max-w-full h-auto align-middle border-none" %>
+          class: "shadow rounded-full max-w-full h-auto border-none" %>
     <% end %>
   </div>
 
-  <% if current_user.avatar.nil?%>
-    <%= link_to "Change Avatar", new_avatar_path, class: "btn-primary"%>
-  <% else %>
-    <%= link_to "Change Avatar", edit_avatar_path, class: "btn-primary" %>
-  <% end %>
+  <div class="pt-4">
+    <% if current_user.avatar.nil?%>
+      <%= link_to "Change Avatar", new_avatar_path, class: "btn-primary"%>
+    <% else %>
+      <%= link_to "Change Avatar", edit_avatar_path, class: "btn-primary" %>
+    <% end %>
+  </div>
 </main>
