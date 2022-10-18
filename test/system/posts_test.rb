@@ -150,4 +150,11 @@ class PostsTest < ApplicationSystemTestCase
     assert_equal expected_ranking, page_ranking_titles
   end
 
+  test "Users can search for posts" do
+    visit posts_path
+    fill_in "Search Posts", with: "ja"
+    click_on "search_post"
+    assert_text "janes post"
+    assert_text "janes second post"
+  end
 end

@@ -33,4 +33,13 @@ class UsersTest < ApplicationSystemTestCase
     assert_current_path posts_path
   end
 
+  test "admin can search users" do
+    login_as users(:admin)
+    visit users_path
+    fill_in "Search Users", with: "john"
+    click_on "Search"
+
+    assert_selector "p", text: "johndoe@example.com"
+  end
+
 end
