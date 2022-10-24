@@ -11,5 +11,9 @@
   </div>
   <div id="posts">
   </div>
-  <%= turbo_frame_tag "pagination", src: next_page_posts_path(format: :turbo_stream), loading: :lazy %> 
+  <%= turbo_frame_tag "pagination", src: next_page_posts_path(format: :turbo_stream), loading: :lazy do %> 
+    <p class="text-lg text-slate-100 animate-pulse">
+      Loading more...
+    </p>
+  <% end %>
 </main> 
