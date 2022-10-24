@@ -25,9 +25,9 @@ class PostsController < ApplicationController
 
   def index_featured
     if params[:sort] == "views"
-      @posts = Post.popularity.last(10)
+      @posts = Post.popularity.first(10)
     else
-      @posts = Post.comment_size.last(10)
+      @posts = Post.comment_size.first(10)
     end
   end
 
