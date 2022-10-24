@@ -24,8 +24,12 @@ class PostsController < ApplicationController
   end
 
   def index_featured
-    @posts = Post.popularity.paginate(page: params[:page], per_page: 3)
-    @posts = @posts[0..3]
+    if params[:sort] == "views"
+      @posts = Post.popularity.paginate(page: params[:page], per_page: 3)
+      @posts = @posts[0..3]
+    else
+      @posts = Post.all.sort_by { |post| post.comments.size }.reverse[0..5]
+    end
   end
 
   def show
@@ -93,6 +97,7 @@ class PostsController < ApplicationController
 
   def random_post
     @post = Post.all.sample
+
   end
 
   private

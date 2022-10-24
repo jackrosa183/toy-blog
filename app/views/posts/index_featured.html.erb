@@ -16,5 +16,9 @@
     <div class= "pt-3">
       <h1 class="text-xl text-slate-200 text-center">Most Popular Posts</h1>
     </div>
-  <%= render @posts %>
+  <%= link_to "Most Viewed", featured_posts_path(sort: "views"), class: "btn-primary", data: { turbo: false }%>
+  <%= link_to "Most Commented", featured_posts_path(sort: "comments"), class: "btn-primary", data: { turbo: false }%>
+  <%= turbo_frame_tag "featured_posts" do %>
+    <%= render @posts %>
+  <% end %>
 </main>
