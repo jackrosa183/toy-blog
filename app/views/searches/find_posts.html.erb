@@ -1,7 +1,8 @@
-<main class="container mx-auto">
+<main class="container mx-auto pt-20">
   <%= will_paginate @posts %>
 
-  <%= tag.p @posts.count.to_s + " Posts found", class: "text-center pt-4 text-slate-200" %>
+  <%= tag.p @posts.count.to_s + " Posts found for '" + params[:query] + "'",
+       class: "text-center pt-4 text-slate-200" %>
   <%= render @posts %>
 
   <%= will_paginate @posts %>
