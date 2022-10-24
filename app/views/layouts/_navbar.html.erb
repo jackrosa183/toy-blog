@@ -1,9 +1,9 @@
-<div class="navbar flex p-2 ml-2 fixed bg-slate-900 w-full z-[100]">
+<div class="navbar flex p-2 fixed bg-slate-900 w-full z-[100]">
   <div class= "navbar_actions">
     <% if user_signed_in? %>
       <div class="navbar flex w-full">
         <%= link_to posts_path do %>
-          <p class="text-5xl font-bold text-white ml-2 align-middle pr-10"> INTENSE WAVE </h1>
+          <p class="text-5xl font-bold text-white align-middle ml-4 pr-2"> INTENSE WAVE </h1>
         <% end %>
         <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn-danger-smaller" %>
         <%= render "/layouts/connect_twitter" %>
@@ -13,15 +13,20 @@
         <%= form_with url: find_posts_path, method: :get do |form| %>
           <%= form.text_field :query, placeholder: "Search Posts", required: true, 
                               class: "px-3 py-3 placeholder-slate-800 text-slate-600 relative bg-slate-200 rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-25"%>
-          <%= button_tag(class: "btn-primary-smaller", data: {turbo: false}, id: "search_post") do %>
-            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" transform="translate(0 7) scale(1.1 1.1)" viewBox="0 0 512 512">
-              <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+          <%= button_tag(data: {turbo: false}, id: "search_post") do %>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" transform="translate(1 7) scale(1.1 1.1)" viewBox="0 0 512 512">
+              <path fill="#FFFFFF" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
             </svg>
           <% end %>
         <% end %>
         <span>
           <%= link_to featured_posts_path do %>
-          <%= render partial: "layouts/graph" %> 
+            <%= render partial: "layouts/graph" %> 
+          <% end %>
+        </span>
+        <span>
+          <%= link_to random_post_path do %>
+            <%= render partial: "layouts/dice" %>
           <% end %>
         </span>
       </div>

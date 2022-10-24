@@ -91,6 +91,10 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "Post was successfully destroyed"
   end
 
+  def random_post
+    @post = Post.all.sample
+  end
+
   private
   
   def set_post
