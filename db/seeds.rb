@@ -5,5 +5,23 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts "\n== Seeding the database with fixtures =="
 system("bin/rails db:fixtures:load")
+posts = []
+(1..50).each do |id|
+  post = Post.create!(
+    title: Faker::Mountain.name,
+    user: User.all.sample,
+    rich_content: Faker::Mountain.range,
+    publish_date: Date.today - rand(10000)
+  )
+  posts << post
+end
+
+posts.each do |post|
+  id = post.id
+  post.update!(
+    rich_content: ActionText::RichText.create!(record_type: 'Post', body: Faker::Mountain.range, name: id.to_s, record_id: id)
+  )
+end
+# cdebugger
+puts "\n== Seeding the database with fixtures =="
