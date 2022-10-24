@@ -25,10 +25,9 @@ class PostsController < ApplicationController
 
   def index_featured
     if params[:sort] == "views"
-      @posts = Post.popularity.paginate(page: params[:page], per_page: 3)
-      @posts = @posts[0..3]
+      @posts = Post.popularity.last(10)
     else
-      @posts = Post.all.sort_by { |post| post.comments.size }.reverse[0..5]
+      @posts = Post.comment_size.last(10)
     end
   end
 
