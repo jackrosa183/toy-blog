@@ -150,11 +150,25 @@ class PostsTest < ApplicationSystemTestCase
     assert_equal expected_ranking, page_ranking_titles
   end
 
+  test "User can sort featured posts by views or comments" do 
+    visit featured_posts_path(sort: "views")
+    click_on "Most Commented"
+    assert_current_path featured_posts_path(sort: "comments")
+    click_on "Most Viewed"
+    assert_current_path featured_posts_path(sort: "views")
+  end
+
   test "Users can search for posts" do
     visit posts_path
     fill_in "Search Posts", with: "ja"
     click_on "search_post"
     assert_text "janes post"
     assert_text "janes second post"
+  end
+
+  test "Users can get a random post" do
+    visit posts_path
+    click_on "random"
+    assert_current_path random_post_path
   end
 end
