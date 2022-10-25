@@ -6,10 +6,6 @@ export default class extends Controller {
   static targets = [ "query", "results", "tags", "addedTags"]
   static values = { url: String }
 
-  connect() {
-    console.log("search is totally connected")
-  }
-
   fetchResults(e){
     if(e.keyCode == 32 ){
       var a = document.createElement("a")
@@ -39,9 +35,9 @@ export default class extends Controller {
 
   addTitle(e){
     
-    var a = document.createElement("a")
+    const a = document.createElement("a")
     a.innerHTML = e.target.dataset.title
-    a.className = "btn-hover-delete"
+    a.classList.add("btn-hover-delete")
     a.dataset.searchTarget = "addedTags"
     a.dataset.action = "click->search#removeTag"
 
@@ -70,7 +66,6 @@ export default class extends Controller {
       return 
     } 
     else {
-      console.log("not here yet")
       const span = document.createElement("span")
       this.tagsTarget.append(span)
       span.append(element)

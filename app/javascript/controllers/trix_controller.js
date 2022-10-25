@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 }
 window.addEventListener("trix-file-accept", function(event) {
-  const acceptedTypes = ['*/pdf', 'image/jpeg', 'image/png', 'image/svg', 'image/gif', 'image/HEIF']
+  const acceptedTypes = ['image/jpeg', 'image/png', 'image/svg', 'image/gif', 'image/HEIF']
   const maxFileSize = 1200 * 1200
   if(publicInput.getElementsByTagName('img').length > 0) {
     event.preventDefault()
