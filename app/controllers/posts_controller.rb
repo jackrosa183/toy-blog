@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :show, :new, :create, :update, :destroy, :edit]
   before_action :is_admin?, only: [:destroy]
 
@@ -32,6 +32,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
     unless current_user.viewed_post.nil?
       viewed_posts = current_user.viewed_post.post_ids
       unless viewed_posts.include?(@post.id)
@@ -105,10 +106,10 @@ class PostsController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_session_path, alert: "Please login before continuing"
     else
-      if is_admin?
+      if Post.find(params[:id]).user == current_user          
         @post = Post.find(params[:id])
       else
-        @post = Post.find(params[:id])          
+        redirect_to posts_path
       end
     end
   end

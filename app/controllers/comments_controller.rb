@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  # before_action :correct_user, only: [:create, :destroy]
+  before_action :correct_user, only: [:destroy]
   
   def new
     @comment = Comment.new
@@ -46,7 +46,6 @@ class CommentsController < ApplicationController
   def destroy
     # debugger
     @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id])
 
     @comment.destroy
     redirect_to controller: 'posts',
@@ -57,6 +56,15 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def correct_user
+    @comment ||= Comment.find(params[:id])
+    if @comment.user != current_user
+      redirect_to posts_path
+    else
+      @comment
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:content, :user_id, :post_id, :page)
